@@ -25,4 +25,12 @@ class Game {
         return currentTurnPlayer
     }
 
+    fun setMoves(movesList: ArrayList<String>)
+    {
+        moves = movesList
+    }
+
+    fun getMoves(): ArrayList<String> {
+        return moves
+    }
 }

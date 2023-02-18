@@ -25,4 +25,15 @@ class GameTest
         assertEquals(game.getTurnPlayer().person.name,"sanjeev")
     }
 
+    @Test
+    fun `should be able set moves for players` () {
+        val game= Game()
+        val moves = ArrayList<String>()
+        moves.add("strike")
+        game.setMoves(moves)
+
+        assertEquals(game.getMoves(),moves)
+    }
+
+
 }
