@@ -7,7 +7,6 @@ class Game {
     private lateinit var players : ArrayList<Player>
 
     fun getStatus(): GameStatus {
-
         return status
     }
 
@@ -33,4 +32,14 @@ class Game {
     fun getMoves(): ArrayList<String> {
         return moves
     }
+
+    fun setPlayers(player: Player) {
+        players = java.util.ArrayList<Player>()
+        players.add(player)
+    }
+
+    fun getPlayers(): Player {
+        return players[0]
+    }
+
 }

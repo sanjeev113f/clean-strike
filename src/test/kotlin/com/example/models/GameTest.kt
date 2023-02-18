@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test
 @MicronautTest
 class GameTest
 {
+    private val game= Game()
 
     @Test
     fun `should be able set status for game` () {
-        val game= Game()
         game.setStatus(GameStatus.ACTIVE)
 
         assertEquals(game.getStatus(),GameStatus.ACTIVE)
@@ -18,7 +18,7 @@ class GameTest
 
     @Test
     fun `should be able set turn for players` () {
-        val game= Game()
+
         val person = Person("sanjeev")
         game.setPlayerTurn(Player(person))
 
@@ -27,7 +27,6 @@ class GameTest
 
     @Test
     fun `should be able set moves for players` () {
-        val game= Game()
         val moves = ArrayList<String>()
         moves.add("strike")
         game.setMoves(moves)
@@ -35,5 +34,12 @@ class GameTest
         assertEquals(game.getMoves(),moves)
     }
 
+    @Test
+    fun `should be able add players` () {
+        val person = Person("sanjeev")
+        val player = Player(person)
+        game.setPlayers(player)
+        assertEquals(game.getPlayers(),player)
+    }
 
 }
