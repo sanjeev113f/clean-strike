@@ -1,6 +1,6 @@
 package com.example.models
 
-class Game(){
+class Game {
     private lateinit var status: GameStatus
     private lateinit var currentTurnPlayer: Player
     private lateinit var moves: ArrayList<String>
@@ -16,5 +16,13 @@ class Game(){
         status = newStatus
     }
 
+    fun setPlayerTurn(player: Player)
+    {
+        currentTurnPlayer = player
+    }
+
+    fun getTurnPlayer(): Player {
+        return currentTurnPlayer
+    }
 
 }

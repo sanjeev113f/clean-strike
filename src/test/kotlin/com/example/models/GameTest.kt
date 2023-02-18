@@ -16,4 +16,13 @@ class GameTest
         assertEquals(game.getStatus(),GameStatus.ACTIVE)
     }
 
+    @Test
+    fun `should be able set turn for players` () {
+        val game= Game()
+        val person = Person("sanjeev")
+        game.setPlayerTurn(Player(person))
+
+        assertEquals(game.getTurnPlayer().person.name,"sanjeev")
+    }
+
 }
