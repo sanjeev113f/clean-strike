@@ -12,6 +12,7 @@ class GameTest
     fun `should be able set status for game` () {
         val game= Game()
         game.setStatus(GameStatus.ACTIVE)
+
         assertEquals(game.getStatus(),GameStatus.ACTIVE)
     }
 
