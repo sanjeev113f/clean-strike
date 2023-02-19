@@ -1,5 +1,4 @@
 package com.example.models
-
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -25,4 +24,22 @@ class CaromBoardTest
 
         assertEquals(count, 1)
     }
+
+    @Test
+    fun `should update count of Red coins`() {
+        val board = CaromBoard()
+        board.updateRedCoinsCount(1)
+
+        assertEquals(board.getRedCoinsCount(), 2)
+    }
+
+    @Test
+    fun `should update count of black coins`() {
+        val board = CaromBoard()
+        board.updateBlackCoinsCount(-1)
+
+
+        assertEquals(board.getBlackCoinsCount(), 8)
+    }
+
 }

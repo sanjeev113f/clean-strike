@@ -17,6 +17,13 @@ class CaromBoard {
         return striker
     }
 
+    fun updateRedCoinsCount(value: Int)
+    {
+        redCoins+=value
+    }
 
-
+    fun updateBlackCoinsCount(value: Int)
+    {
+        blackCoins+=value
+    }
 }
