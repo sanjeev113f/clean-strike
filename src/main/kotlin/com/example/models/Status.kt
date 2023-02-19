@@ -5,6 +5,5 @@ enum class GameStatus
 {
     ACTIVE,
     Draw,
-    WIN,
-    LOOSE
+    INACTIVE
 }
