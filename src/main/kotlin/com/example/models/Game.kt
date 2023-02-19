@@ -4,7 +4,8 @@ class Game {
     private lateinit var status: GameStatus
     private lateinit var currentTurnPlayer: Player
     private lateinit var moves: ArrayList<String>
-    private lateinit var players : ArrayList<Player>
+    private var players : ArrayList<Player> = java.util.ArrayList<Player>()
+    private var flag =0
 
     fun getStatus(): GameStatus {
         return status
@@ -15,9 +16,10 @@ class Game {
         status = newStatus
     }
 
-    fun setPlayerTurn(player: Player)
+    fun setPlayerTurn(index: Int)
     {
-        currentTurnPlayer = player
+        currentTurnPlayer = players[index]
+        flag = (index+1)%2
     }
 
     fun getTurnPlayer(): Player {
@@ -34,24 +36,11 @@ class Game {
     }
 
     fun setPlayers(player: Player) {
-        players = java.util.ArrayList<Player>()
         players.add(player)
     }
 
     fun getPlayers(): Player {
         return players[0]
     }
-
-    fun startGame(listOfMoves : ArrayList<String>)
-    {
-        setStatus(GameStatus.ACTIVE)
-        setPlayerTurn(p1)
-
-        for(i in listOfMoves)
-        {
-
-        }
-    }
-
 
 }
