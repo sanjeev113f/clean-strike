@@ -9,4 +9,9 @@ class Player( val person:Person )
     fun getGameScore(): Int {
        return gameScore
     }
+
+    fun updateGameScore(value: Int)
+    {
+        gameScore = value
+    }
 }

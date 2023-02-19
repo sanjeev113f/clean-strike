@@ -20,4 +20,13 @@ class PlayerTest
 
         assertEquals(player.getGameScore(), 0)
     }
+
+    @Test
+    fun `should update gameScore`() {
+        val person = Person("aa")
+        val player = Player(person)
+        player.updateGameScore(10)
+
+        assertEquals(player.getGameScore(), 10)
+    }
 }
