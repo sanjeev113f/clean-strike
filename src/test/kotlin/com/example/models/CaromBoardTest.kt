@@ -18,4 +18,11 @@ class CaromBoardTest
 
         assertEquals(count, 9)
     }
+
+    @Test
+    fun `should give count of striker`() {
+        val count = CaromBoard().getStrikerCount()
+
+        assertEquals(count, 1)
+    }
 }

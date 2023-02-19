@@ -13,4 +13,10 @@ class CaromBoard {
         return blackCoins
     }
 
+    fun getStrikerCount(): Int {
+        return striker
+    }
+
+
+
 }
