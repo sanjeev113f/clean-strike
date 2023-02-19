@@ -60,4 +60,8 @@ class Game {
         return 0
     }
 
+    fun startGame(): Player
+    {
+        return Player(Person(""))
+    }
 }
