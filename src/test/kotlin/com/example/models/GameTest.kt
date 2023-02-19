@@ -22,7 +22,7 @@ class GameTest
         val person = Person("sanjeev")
         val player = Player(person)
         val game = Game()
-        game.setPlayers(player)
+        game.addPlayers(player)
 
         assertEquals(game.getPlayers().person.name,"sanjeev")
     }
@@ -40,14 +40,30 @@ class GameTest
     fun `should be able add players` () {
         val person = Person("sanjeev")
         val player = Player(person)
-        game.setPlayers(player)
+        game.addPlayers(player)
         assertEquals(game.getPlayers(),player)
     }
 
     @Test
     fun `should be able to check win`() {
-        val game = Game().checkWin()
+        val player1 = Player(Person("a"))
+        val player2 = Player(Person("b"))
+        game.addPlayers(player1)
+        game.addPlayers(player2)
 
-        assertEquals(game, 0)
+        assertEquals(game.checkWin(), 0)
+    }
+
+    @Test
+    fun `should be able to check win with updated score`() {
+        val player1 = Player(Person("a"))
+        val player2 = Player(Person("b"))
+        game.addPlayers(player1)
+        game.addPlayers(player2)
+        player1.updateGameScore(10)
+        player2.updateGameScore(2)
+        val game = game.checkWin()
+
+        assertEquals(game, 1)
     }
 }

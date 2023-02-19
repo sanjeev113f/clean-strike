@@ -35,7 +35,7 @@ class Game {
         return moves
     }
 
-    fun setPlayers(player: Player) {
+    fun addPlayers(player: Player) {
         players.add(player)
     }
 
@@ -45,6 +45,18 @@ class Game {
 
     fun checkWin(): Int
     {
+        val score1 = players[0].getGameScore()
+        val score2 = players[1].getGameScore()
+        if(score1>=5 && score1 >= score2+3 )
+        {
+            setStatus(GameStatus.INACTIVE)
+            return 1
+        }
+        if(score2>=5 && score2 >= score1+3 )
+        {
+            setStatus(GameStatus.INACTIVE)
+            return 1
+        }
         return 0
     }
 
