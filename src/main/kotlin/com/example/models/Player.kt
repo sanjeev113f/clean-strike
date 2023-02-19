@@ -4,7 +4,7 @@ class Player( val person:Person )
 {
     private var gameScore = 0
     private var foulCount = 0
-    private var threeSuccessiveTurnEarning = 0
+    private var threeSuccessiveTurnPoint = 0
 
     fun getGameScore(): Int {
        return gameScore
@@ -23,5 +23,15 @@ class Player( val person:Person )
     {
         foulCount += value
     }
+
+    fun getThreeSuccessiveTurnEarning(): Int {
+        return threeSuccessiveTurnPoint
+    }
+
+    fun updateSuccessiveTurnEarning(value :Int)
+    {
+        threeSuccessiveTurnPoint+=value
+    }
+
 
 }

@@ -47,4 +47,23 @@ class PlayerTest
         assertEquals(player.getFoulCount(), 10)
     }
 
+    @Test
+    fun `should give threeSuccessiveTurnPoint`() {
+        val person = Person("aa")
+        val player = Player(person)
+
+        assertEquals(player.getThreeSuccessiveTurnEarning(), 0)
+    }
+
+    @Test
+    fun `should update threeSuccessiveTurnPoint`() {
+        val person = Person("aa")
+        val player = Player(person)
+        player.updateSuccessiveTurnEarning(12)
+
+        assertEquals(player.getThreeSuccessiveTurnEarning(), 12)
+    }
+
+
+
 }
