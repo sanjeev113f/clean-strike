@@ -42,4 +42,16 @@ class Game {
         return players[0]
     }
 
+    fun startGame(listOfMoves : ArrayList<String>)
+    {
+        setStatus(GameStatus.ACTIVE)
+        setPlayerTurn(p1)
+
+        for(i in listOfMoves)
+        {
+
+        }
+    }
+
+
 }
