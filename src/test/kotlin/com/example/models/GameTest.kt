@@ -20,9 +20,11 @@ class GameTest
     fun `should be able set turn for players` () {
 
         val person = Person("sanjeev")
-        game.setPlayerTurn(Player(person))
+        val player = Player(person)
+        val game = Game()
+        game.setPlayers(player)
 
-        assertEquals(game.getTurnPlayer().person.name,"sanjeev")
+        assertEquals(game.getPlayers().person.name,"sanjeev")
     }
 
     @Test
