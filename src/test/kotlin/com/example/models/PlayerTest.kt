@@ -11,7 +11,13 @@ class PlayerTest
         val player = Player(person)
 
         assertEquals(player.person, person)
+    }
 
+    @Test
+    fun `should give gameScore`() {
+        val person = Person("aa")
+        val player = Player(person)
 
+        assertEquals(player.getGameScore(), 0)
     }
 }
