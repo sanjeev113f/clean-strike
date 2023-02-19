@@ -5,11 +5,11 @@ class CaromBoard {
     private var blackCoins = 9
     private var striker = 1
 
-    fun getRedCoins(): Int {
+    fun getRedCoinsCount(): Int {
         return redCoins
     }
 
-    fun getBlackCoins(): Int {
+    fun getBlackCoinsCount(): Int {
         return blackCoins
     }
 

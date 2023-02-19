@@ -7,14 +7,14 @@ class CaromBoardTest
 {
     @Test
     fun `should give count of Red Coins`() {
-        val count = CaromBoard().getRedCoins()
+        val count = CaromBoard().getRedCoinsCount()
 
         assertEquals(count, 1)
     }
 
     @Test
     fun `should give count of black Coins`() {
-        val count = CaromBoard().getBlackCoins()
+        val count = CaromBoard().getBlackCoinsCount()
 
         assertEquals(count, 9)
     }
