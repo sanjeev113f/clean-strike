@@ -12,6 +12,16 @@ class Player( val person:Person )
 
     fun updateGameScore(value: Int)
     {
-        gameScore = value
+        gameScore += value
     }
+
+    fun getFoulCount(): Int {
+        return foulCount
+    }
+
+    fun updateFoulCount(value: Int)
+    {
+        foulCount += value
+    }
+
 }

@@ -29,4 +29,22 @@ class PlayerTest
 
         assertEquals(player.getGameScore(), 10)
     }
+
+    @Test
+    fun `should give foulCount`() {
+        val person = Person("aa")
+        val player = Player(person)
+
+        assertEquals(player.getFoulCount(), 0)
+    }
+
+    @Test
+    fun `should update foulCount`() {
+        val person = Person("aa")
+        val player = Player(person)
+        player.updateFoulCount(10)
+
+        assertEquals(player.getFoulCount(), 10)
+    }
+
 }
