@@ -44,4 +44,10 @@ class GameTest
         assertEquals(game.getPlayers(),player)
     }
 
+    @Test
+    fun `should be able to check win`() {
+        val game = Game().checkWin()
+
+        assertEquals(game, 0)
+    }
 }

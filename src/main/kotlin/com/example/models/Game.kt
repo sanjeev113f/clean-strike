@@ -43,4 +43,9 @@ class Game {
         return players[0]
     }
 
+    fun checkWin(): Int
+    {
+        return 0
+    }
+
 }
