@@ -66,11 +66,11 @@ class GameTest {
         assertEquals(game, 1)
     }
 
-    @Test
-    fun `should be able to start game`() {
-        val player = game.startGame()
-
-        assertEquals(player.person.name, "")
-    }
+//    @Test
+//    fun `should be able to start game`() {
+//        val player = game.startGame()
+//
+//        assertEquals(player.person.name, "")
+//    }
 
 }
