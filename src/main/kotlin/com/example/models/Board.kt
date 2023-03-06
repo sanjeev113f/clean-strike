@@ -5,9 +5,7 @@ class CaromBoard {
     private var blackCoins = COUNT_OF_BLACK_COINS
     private var striker = COUNT_OF_STRIKER
 
-    fun getRedCoinsCount(): Int {
-        return redCoins
-    }
+    fun getRedCoinsCount() = redCoins
 
     fun getBlackCoinsCount() = blackCoins
 

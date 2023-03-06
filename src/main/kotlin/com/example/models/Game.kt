@@ -4,35 +4,26 @@ class Game {
     private lateinit var status: GameStatus
     private lateinit var currentTurnPlayer: Player
     private lateinit var moves: ArrayList<String>
-    private var players : ArrayList<Player> = java.util.ArrayList<Player>()
-    private var flag =0
+    private var players: ArrayList<Player> = java.util.ArrayList<Player>()
+    private var flag = 0
 
-    fun getStatus(): GameStatus {
-        return status
-    }
+    fun getStatus() = status
 
-    fun setStatus(newStatus: GameStatus)
-    {
+    fun getTurnPlayer() = currentTurnPlayer
+
+    fun getMoves() = moves
+
+    fun setStatus(newStatus: GameStatus) {
         status = newStatus
     }
 
-    fun setPlayerTurn(index: Int)
-    {
+    fun setPlayerTurn(index: Int) {
         currentTurnPlayer = players[index]
-        flag = (index+1)%2
+        flag = (index + 1) % 2
     }
 
-    fun getTurnPlayer(): Player {
-        return currentTurnPlayer
-    }
-
-    fun setMoves(movesList: ArrayList<String>)
-    {
+    fun setMoves(movesList: ArrayList<String>) {
         moves = movesList
-    }
-
-    fun getMoves(): ArrayList<String> {
-        return moves
     }
 
     fun addPlayers(player: Player) {
@@ -43,17 +34,14 @@ class Game {
         return players[0]
     }
 
-    fun checkWin(): Int
-    {
+    fun checkWin(): Int {
         val score1 = players[0].getGameScore()
         val score2 = players[1].getGameScore()
-        if(score1>=5 && score1 >= score2+3 )
-        {
+        if (score1 >= 5 && score1 >= score2 + 3) {
             setStatus(GameStatus.INACTIVE)
             return 1
         }
-        if(score2>=5 && score2 >= score1+3 )
-        {
+        if (score2 >= 5 && score2 >= score1 + 3) {
             setStatus(GameStatus.INACTIVE)
             return 1
         }
