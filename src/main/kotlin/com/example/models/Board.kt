@@ -8,7 +8,8 @@ class CaromBoard {
     fun getRedCoinsCount(): Int {
         return redCoins
     }
-    fun getBlackCoinsCount()= blackCoins
+
+    fun getBlackCoinsCount() = blackCoins
 
     fun getStrikerCount() = striker
 
