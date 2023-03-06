@@ -1,17 +1,15 @@
 package com.example.models
 
-class Player( val person:Person )
-{
-    private var gameScore = 0
-    private var foulCount = 0
-    private var threeSuccessiveTurnPoint = 0
+class Player(val person: Person) {
+    private var gameScore = MIN_VALUE
+    private var foulCount = MIN_VALUE
+    private var threeSuccessiveTurnPoint = MIN_VALUE
 
     fun getGameScore(): Int {
-       return gameScore
+        return gameScore
     }
 
-    fun updateGameScore(value: Int)
-    {
+    fun updateGameScore(value: Int) {
         gameScore += value
     }
 
@@ -19,8 +17,7 @@ class Player( val person:Person )
         return foulCount
     }
 
-    fun updateFoulCount(value: Int)
-    {
+    fun updateFoulCount(value: Int) {
         foulCount += value
     }
 
@@ -28,9 +25,8 @@ class Player( val person:Person )
         return threeSuccessiveTurnPoint
     }
 
-    fun updateSuccessiveTurnEarning(value :Int)
-    {
-        threeSuccessiveTurnPoint+=value
+    fun updateSuccessiveTurnEarning(value: Int) {
+        threeSuccessiveTurnPoint += value
     }
 
 
