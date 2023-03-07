@@ -21,6 +21,14 @@ class PlayerTest {
     }
 
     @Test
+    fun `should give red coin count for player`() {
+        val person = Person("aa")
+        val player = Player(person)
+
+        assertEquals(player.getRedCoinCount(), 0)
+    }
+
+    @Test
     fun `should give gameScore`() {
         val person = Person("aa")
         val player = Player(person)
