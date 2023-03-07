@@ -55,7 +55,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         return 0
     }
 
-    fun play() {
+    fun play(move: String) {
         setStatus(GameStatus.ACTIVE)
     }
 }

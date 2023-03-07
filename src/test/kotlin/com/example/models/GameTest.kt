@@ -94,9 +94,9 @@ class GameTest {
     @Test
     fun `should be able to start game`() {
         val game = Game()
-        game.play()
+        game.play("")
 
-        assertEquals(game.getStatus(),GameStatus.ACTIVE)
+        assertEquals(game.getStatus(), GameStatus.ACTIVE)
     }
     @Test
     fun `should be able to check coins remaining`() {
