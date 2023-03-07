@@ -1,9 +1,9 @@
 package com.example.models
 
 class Player(val person: Person) {
-    private var gameScore = MIN_VALUE
-    private var foulCount = MIN_VALUE
-    private var threeSuccessiveTurnPoint = MIN_VALUE
+    private var gameScore = MIN_GAME_SCORE
+    private var foulCount = MIN_FOUL_COUNT
+    private var threeSuccessiveTurnPoint = MIN_GAME_SCORE
 
     fun getGameScore() = gameScore
 
