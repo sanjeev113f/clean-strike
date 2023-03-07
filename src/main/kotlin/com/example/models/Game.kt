@@ -1,5 +1,8 @@
 package com.example.models
 
+import com.example.error.OutOfIndexError
+import com.example.error.PlayerLimitExceededError
+
 class Game(private val board: CaromBoard = CaromBoard()) {
     private lateinit var currentTurnPlayer: Player
     private lateinit var winner: Player
@@ -18,6 +21,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     }
 
     fun setPlayerTurn(index: Int) {
+        if(index<0 || index> PLAYERS_COUNT) throw OutOfIndexError()
         currentTurnPlayer = players[index]
         currentTurnPlayerIndex = (index + 1) % PLAYERS_COUNT
     }
@@ -28,6 +32,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     }
 
     fun addPlayers(player: Player) {
+        if(players.size == PLAYERS_COUNT) throw PlayerLimitExceededError()
         players.add(player)
     }
 
