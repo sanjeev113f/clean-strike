@@ -3,6 +3,7 @@ package com.example.models
 class Game(private val board: CaromBoard = CaromBoard()) {
     private lateinit var status: GameStatus
     private lateinit var currentTurnPlayer: Player
+    private lateinit var winner: Player
     private lateinit var moves: ArrayList<String>
     private var players: ArrayList<Player> = java.util.ArrayList<Player>()
     private var flag = 0
@@ -10,6 +11,8 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     fun getStatus() = status
 
     fun getTurnPlayer() = currentTurnPlayer
+
+    fun getWinner() = winner
 
     fun getMoves() = moves
 
