@@ -41,12 +41,9 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     }
 
     fun play(move: String) {
-        setStatus(GameStatus.ACTIVE)
+        if(status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
         setPlayerTurn(currentTurnPlayerIndex)
-        if (currentTurnPlayer.getFoulCount() == MAX_FOUL_COUNT) {
-            currentTurnPlayer.updateGameScore(-1)
-            currentTurnPlayer.updateFoulCount(-MAX_FOUL_COUNT)
-        }
+        checkAndUpdateForFouls()
 
         when (move) {
             "Strike" -> {
@@ -87,6 +84,13 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
         if (isCoinsOver()) {
             setStatus(GameStatus.DRAW)
+        }
+    }
+
+    private fun checkAndUpdateForFouls() {
+        if (currentTurnPlayer.getFoulCount() == MAX_FOUL_COUNT) {
+            currentTurnPlayer.updateGameScore(-1)
+            currentTurnPlayer.updateFoulCount(-MAX_FOUL_COUNT)
         }
     }
 }
