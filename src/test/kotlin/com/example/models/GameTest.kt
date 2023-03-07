@@ -6,10 +6,12 @@ import org.junit.jupiter.api.Test
 
 @MicronautTest
 class GameTest {
-    private val game = Game()
+
 
     @Test
     fun `should be able set status for game`() {
+        val game = Game()
+
         game.setStatus(GameStatus.ACTIVE)
 
         assertEquals(game.getStatus(), GameStatus.ACTIVE)
@@ -21,6 +23,7 @@ class GameTest {
         val person = Person("sanjeev")
         val player = Player(person)
         val game = Game()
+
         game.addPlayers(player)
         game.setPlayerTurn(0)
 
@@ -29,7 +32,9 @@ class GameTest {
 
     @Test
     fun `should be able set moves for players`() {
+        val game = Game()
         val moves = ArrayList<String>()
+
         moves.add("strike")
         game.setMoves(moves)
 
@@ -38,16 +43,21 @@ class GameTest {
 
     @Test
     fun `should be able add players`() {
+        val game = Game()
         val person = Person("sanjeev")
         val player = Player(person)
+
         game.addPlayers(player)
+
         assertEquals(game.getPlayers(), player)
     }
 
     @Test
     fun `should be able to check win`() {
+        val game = Game()
         val player1 = Player(Person("a"))
         val player2 = Player(Person("b"))
+
         game.addPlayers(player1)
         game.addPlayers(player2)
 
@@ -56,11 +66,12 @@ class GameTest {
 
     @Test
     fun `should be able to check win and update status`() {
+        val game = Game()
         val player1 = Player(Person("a"))
         val player2 = Player(Person("b"))
+
         game.addPlayers(player1)
         game.addPlayers(player2)
-
         player2.updateGameScore(5)
 
         assertEquals(game.checkWin(), 1)
@@ -69,17 +80,17 @@ class GameTest {
 
     @Test
     fun `should be able to check win with updated score`() {
+        val game = Game()
         val player1 = Player(Person("a"))
         val player2 = Player(Person("b"))
+
         game.addPlayers(player1)
         game.addPlayers(player2)
         player1.updateGameScore(10)
         player2.updateGameScore(2)
-        val game = game.checkWin()
 
-        assertEquals(game, 1)
+        assertEquals(game.checkWin(), 1)
     }
-
 //    @Test
 //    fun `should be able to start game`() {
 //        val player = game.startGame()

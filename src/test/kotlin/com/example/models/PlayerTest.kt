@@ -3,8 +3,7 @@ package com.example.models
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class PlayerTest
-{
+class PlayerTest {
     @Test
     fun `should be able to create a player`() {
         val person = Person("aa")
@@ -25,6 +24,7 @@ class PlayerTest
     fun `should update gameScore`() {
         val person = Person("aa")
         val player = Player(person)
+
         player.updateGameScore(10)
 
         assertEquals(player.getGameScore(), 10)
@@ -42,6 +42,7 @@ class PlayerTest
     fun `should update foulCount`() {
         val person = Person("aa")
         val player = Player(person)
+
         player.updateFoulCount(10)
 
         assertEquals(player.getFoulCount(), 10)
@@ -59,11 +60,10 @@ class PlayerTest
     fun `should update threeSuccessiveTurnPoint`() {
         val person = Person("aa")
         val player = Player(person)
+
         player.updateSuccessiveTurnEarning(12)
 
         assertEquals(player.getThreeSuccessiveTurnEarning(), 12)
     }
-
-
 
 }
