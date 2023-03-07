@@ -50,7 +50,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
         when (move) {
             "Strike" -> {
-                CaromBoard().updateBlackCoinsCount(-1)
+                board.updateBlackCoinsCount(-1)
                 currentTurnPlayer.updateGameScore(1)
                 currentTurnPlayer.addBlackCoin(1)
             }
@@ -58,11 +58,11 @@ class Game(private val board: CaromBoard = CaromBoard()) {
             "Multi strike" -> {
                 currentTurnPlayer.updateGameScore(2)
                 currentTurnPlayer.addBlackCoin(2)
-                CaromBoard().updateBlackCoinsCount(-2)
+                board.updateBlackCoinsCount(-2)
             }
 
             "Red strike" -> {
-                CaromBoard().updateRedCoinsCount(-1)
+                board.updateRedCoinsCount(-1)
                 currentTurnPlayer.updateGameScore(3)
                 currentTurnPlayer.addRedCoin(1)
             }
@@ -74,7 +74,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
 
             "Defunct coin" -> {
-                CaromBoard().updateBlackCoinsCount(-1)
+                board.updateBlackCoinsCount(-1)
                 currentTurnPlayer.updateGameScore(-2)
                 currentTurnPlayer.updateFoulCount(1)
             }

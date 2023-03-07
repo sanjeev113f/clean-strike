@@ -94,7 +94,7 @@ class GameTest {
     }
 
     @Test
-    fun `should be able to play the game`() {
+    fun `should be able to play the game with win as result`() {
         val board = CaromBoard()
         val game = Game(board)
         val player1 = Player(Person("a"))
@@ -102,12 +102,30 @@ class GameTest {
 
         game.addPlayers(player1)
         game.addPlayers(player2)
-        val ls = listOf("Multi strike", "strike", "Red strike")
+        val ls = listOf("Multi strike", "Strike", "Defunct coin", "Red strike", "Multi strike", "Defunct coin", "Red strike")
         for (moves in ls) {
             game.play(moves)
         }
 
         assertEquals(game.getStatus(), GameStatus.INACTIVE)
         assertEquals(game.getWinner().person.name, "a")
+    }
+
+    @Test
+    fun `should be able to play the game with Draw as result`() {
+        val board = CaromBoard()
+        val game = Game(board)
+        val player1 = Player(Person("a"))
+        val player2 = Player(Person("b"))
+
+        game.addPlayers(player1)
+        game.addPlayers(player2)
+        val ls = listOf("Striker strike", "Red strike", "Multi strike", " Striker strike", "Strike", "Strike", "Strike",
+            "Striker strike", "Striker strike", "Strike", "Strike", "Striker strike", "Striker strike", "Strike", "Strike")
+        for (moves in ls) {
+            game.play(moves)
+        }
+
+        assertEquals(game.getStatus(), GameStatus.DRAW)
     }
 }
