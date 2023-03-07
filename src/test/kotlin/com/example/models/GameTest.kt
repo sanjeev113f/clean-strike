@@ -61,7 +61,7 @@ class GameTest {
         game.addPlayers(player1)
         game.addPlayers(player2)
 
-        player1.updateGameScore(5)
+        player2.updateGameScore(5)
 
         assertEquals(game.checkWin(), 1)
         assertEquals(game.getStatus(), GameStatus.INACTIVE)
