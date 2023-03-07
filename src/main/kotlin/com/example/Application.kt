@@ -1,7 +1,24 @@
 package com.example
 
-import io.micronaut.runtime.Micronaut.run
-fun main(args: Array<String>) {
-	run(*args)
+import com.example.models.CaromBoard
+import com.example.models.Game
+import com.example.models.Person
+import com.example.models.Player
+
+fun main() {
+    val board = CaromBoard()
+    val game= Game(board)
+
+    val player1 = Player(Person("sanjeev"))
+    val player2 = Player(Person("kumar"))
+    game.addPlayers(player1)
+    game.addPlayers(player2)
+
+    val ls = listOf("Multi strike", "strike", "Red strike", "Defunct coin")
+    for(index in 0..2)
+    {
+        game.play(ls[index])
+    }
 }
+
 
