@@ -8,4 +8,4 @@ const val COUNT_OF_STRIKER = 1
 
 const val MIN_GAME_SCORE = 0
 
-const val MIN_FOUL_COUNT = 0
+const val MIN_COUNT = 0
