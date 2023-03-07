@@ -21,6 +21,10 @@ class Player(val person: Person) {
         foulCount += value
     }
 
+    fun addRedCoin(value:Int) {
+        redCoinCount += value
+    }
+
     fun updateGameScore(value: Int) {
         gameScore += value
     }
