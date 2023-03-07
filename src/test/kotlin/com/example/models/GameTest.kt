@@ -31,17 +31,6 @@ class GameTest {
     }
 
     @Test
-    fun `should be able set moves for players`() {
-        val game = Game()
-        val moves = ArrayList<String>()
-
-        moves.add("strike")
-        game.setMoves(moves)
-
-        assertEquals(game.getMoves(), moves)
-    }
-
-    @Test
     fun `should be able add players`() {
         val game = Game()
         val person = Person("sanjeev")
@@ -91,10 +80,11 @@ class GameTest {
 
         assertEquals(game.checkWin(), 1)
     }
+
     @Test
     fun `should be able to start game`() {
         val board = CaromBoard()
-        val game= Game(board)
+        val game = Game(board)
 
         val player1 = Player(Person("sanjeev"))
         val player2 = Player(Person("kumar"))
@@ -104,6 +94,7 @@ class GameTest {
 
         assertEquals(game.getStatus(), GameStatus.ACTIVE)
     }
+
     @Test
     fun `should be able to check coins remaining`() {
         val board = CaromBoard()
@@ -125,15 +116,11 @@ class GameTest {
         game.addPlayers(player1)
         game.addPlayers(player2)
         val ls = listOf("Multi strike", "strike", "Red strike")
-        for(moves in ls)
-        {
+        for (moves in ls) {
             game.play(moves)
         }
 
         assertEquals(game.getStatus(), GameStatus.INACTIVE)
         assertEquals(game.getWinner().person.name, "a")
     }
-
-
-
 }

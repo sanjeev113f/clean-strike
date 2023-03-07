@@ -4,7 +4,6 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     private lateinit var status: GameStatus
     private lateinit var currentTurnPlayer: Player
     private lateinit var winner: Player
-    private lateinit var moves: ArrayList<String>
     private var players: ArrayList<Player> = java.util.ArrayList<Player>()
     private var flag = 0
 
@@ -13,8 +12,6 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     fun getTurnPlayer() = currentTurnPlayer
 
     fun getWinner() = winner
-
-    fun getMoves() = moves
 
     fun setStatus(newStatus: GameStatus) {
         status = newStatus
@@ -29,10 +26,6 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         if (board.getBlackCoinsCount() + board.getRedCoinsCount() == 0) return true
 
         return false
-    }
-
-    fun setMoves(movesList: ArrayList<String>) {
-        moves = movesList
     }
 
     fun addPlayers(player: Player) {
