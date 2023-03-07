@@ -93,8 +93,14 @@ class GameTest {
     }
     @Test
     fun `should be able to start game`() {
-        val game = Game()
-        game.play("")
+        val board = CaromBoard()
+        val game= Game(board)
+
+        val player1 = Player(Person("sanjeev"))
+        val player2 = Player(Person("kumar"))
+        game.addPlayers(player1)
+        game.addPlayers(player2)
+        game.play("strike")
 
         assertEquals(game.getStatus(), GameStatus.ACTIVE)
     }
@@ -108,6 +114,26 @@ class GameTest {
 
         assertEquals(game.isCoinsOver(), true)
     }
+
+    @Test
+    fun `should be play the game`() {
+        val board = CaromBoard()
+        val game = Game(board)
+        val player1 = Player(Person("a"))
+        val player2 = Player(Person("b"))
+
+        game.addPlayers(player1)
+        game.addPlayers(player2)
+        val ls = listOf("Multi strike", "strike", "Red strike")
+        for(moves in ls)
+        {
+            game.play(moves)
+        }
+
+        assertEquals(game.getStatus(), GameStatus.INACTIVE)
+        assertEquals(game.getWinner().person.name, "a")
+    }
+
 
 
 }
