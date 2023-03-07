@@ -1,6 +1,6 @@
 package com.example.models
 
-class Game {
+class Game(private val board: CaromBoard = CaromBoard()) {
     private lateinit var status: GameStatus
     private lateinit var currentTurnPlayer: Player
     private lateinit var moves: ArrayList<String>
@@ -22,6 +22,12 @@ class Game {
         flag = (index + 1) % 2
     }
 
+    fun isCoinsOver(): Boolean {
+        if (board.getBlackCoinsCount() + board.getRedCoinsCount() == 0) return true
+
+        return false
+    }
+
     fun setMoves(movesList: ArrayList<String>) {
         moves = movesList
     }
@@ -41,6 +47,7 @@ class Game {
             setStatus(GameStatus.INACTIVE)
             return 1
         }
+
         if (score2 >= 5 && score2 >= score1 + 3) {
             setStatus(GameStatus.INACTIVE)
             return 1

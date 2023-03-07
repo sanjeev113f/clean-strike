@@ -98,5 +98,16 @@ class GameTest {
 
         assertEquals(game.getStatus(),GameStatus.ACTIVE)
     }
+    @Test
+    fun `should be able to check coins remaining`() {
+        val board = CaromBoard()
+        val game = Game(board)
+
+        board.updateBlackCoinsCount(-9)
+        board.updateRedCoinsCount(-1)
+
+        assertEquals(game.isCoinsOver(), true)
+    }
+
 
 }
