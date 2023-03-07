@@ -3,7 +3,7 @@ package com.example.models
 class Player(val person: Person) {
     private var gameScore = MIN_GAME_SCORE
     private var foulCount = MIN_COUNT
-    private var threeSuccessiveTurnPoint = MIN_GAME_SCORE
+    private var threeSuccessiveTurnsPoint = MIN_GAME_SCORE
     private var blackCoinCount = MIN_COUNT
     private var redCoinCount = MIN_COUNT
 
@@ -15,16 +15,17 @@ class Player(val person: Person) {
 
     fun getFoulCount() = foulCount
 
-    fun getThreeSuccessiveTurnEarning() = threeSuccessiveTurnPoint
+    fun getThreeSuccessiveTurnEarning() = threeSuccessiveTurnsPoint
 
     fun updateFoulCount(value: Int) {
         foulCount += value
     }
 
-    fun addRedCoin(value:Int) {
+    fun addRedCoin(value: Int) {
         redCoinCount += value
     }
-    fun addBlackCoin(value:Int) {
+
+    fun addBlackCoin(value: Int) {
         blackCoinCount += value
     }
 
@@ -33,7 +34,6 @@ class Player(val person: Person) {
     }
 
     fun updateSuccessiveTurnEarning(value: Int) {
-        threeSuccessiveTurnPoint += value
+        threeSuccessiveTurnsPoint += value
     }
-
 }

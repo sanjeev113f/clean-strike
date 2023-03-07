@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 @MicronautTest
 class GameTest {
 
-
     @Test
     fun `should be able set status for game`() {
         val game = Game()
@@ -19,7 +18,6 @@ class GameTest {
 
     @Test
     fun `should be able set turn for players`() {
-
         val person = Person("sanjeev")
         val player = Player(person)
         val game = Game()
@@ -31,17 +29,6 @@ class GameTest {
     }
 
     @Test
-    fun `should be able add players`() {
-        val game = Game()
-        val person = Person("sanjeev")
-        val player = Player(person)
-
-        game.addPlayers(player)
-
-        assertEquals(game.getPlayers(), player)
-    }
-
-    @Test
     fun `should be able to check win`() {
         val game = Game()
         val player1 = Player(Person("a"))
@@ -50,7 +37,7 @@ class GameTest {
         game.addPlayers(player1)
         game.addPlayers(player2)
 
-        assertEquals(game.checkWin(), 0)
+        assertEquals(game.checkWin(), false)
     }
 
     @Test
@@ -63,7 +50,7 @@ class GameTest {
         game.addPlayers(player2)
         player2.updateGameScore(5)
 
-        assertEquals(game.checkWin(), 1)
+        assertEquals(game.checkWin(), true)
         assertEquals(game.getStatus(), GameStatus.INACTIVE)
     }
 
@@ -78,7 +65,7 @@ class GameTest {
         player1.updateGameScore(10)
         player2.updateGameScore(2)
 
-        assertEquals(game.checkWin(), 1)
+        assertEquals(game.checkWin(), true)
     }
 
     @Test
@@ -107,7 +94,7 @@ class GameTest {
     }
 
     @Test
-    fun `should be play the game`() {
+    fun `should be able to play the game`() {
         val board = CaromBoard()
         val game = Game(board)
         val player1 = Player(Person("a"))

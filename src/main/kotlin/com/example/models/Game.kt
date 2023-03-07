@@ -1,11 +1,11 @@
 package com.example.models
 
 class Game(private val board: CaromBoard = CaromBoard()) {
-    private lateinit var status: GameStatus
     private lateinit var currentTurnPlayer: Player
     private lateinit var winner: Player
     private var players: ArrayList<Player> = java.util.ArrayList<Player>()
-    private var flag = 0
+    private var currentTurnPlayerIndex = START_INDEX
+    private var status = GameStatus.INACTIVE
 
     fun getStatus() = status
 
@@ -19,12 +19,11 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     fun setPlayerTurn(index: Int) {
         currentTurnPlayer = players[index]
-        flag = (index + 1) % 2
+        currentTurnPlayerIndex = (index + 1) % PLAYERS_COUNT
     }
 
     fun isCoinsOver(): Boolean {
         if (board.getBlackCoinsCount() + board.getRedCoinsCount() == 0) return true
-
         return false
     }
 
@@ -32,31 +31,21 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         players.add(player)
     }
 
-    fun getPlayers(): Player {
-        return players[0]
-    }
-
-    fun checkWin(): Int {
+    fun checkWin(): Boolean {
         val score1 = players[0].getGameScore()
         val score2 = players[1].getGameScore()
-        if (score1 >= 5 && score1 >= score2 + 3) {
-            setStatus(GameStatus.INACTIVE)
-            return 1
+        if ((score1 >= 5 && score1 >= score2 + 3) || (score2 >= 5 && score2 >= score1 + 3)) {
+            return true
         }
-
-        if (score2 >= 5 && score2 >= score1 + 3) {
-            setStatus(GameStatus.INACTIVE)
-            return 1
-        }
-        return 0
+        return false
     }
 
     fun play(move: String) {
         setStatus(GameStatus.ACTIVE)
-        setPlayerTurn(flag)
-        if (currentTurnPlayer.getFoulCount() == 3) {
+        setPlayerTurn(currentTurnPlayerIndex)
+        if (currentTurnPlayer.getFoulCount() == MAX_FOUL_COUNT) {
             currentTurnPlayer.updateGameScore(-1)
-            currentTurnPlayer.updateFoulCount(-3)
+            currentTurnPlayer.updateFoulCount(-MAX_FOUL_COUNT)
         }
 
         when (move) {
@@ -91,13 +80,13 @@ class Game(private val board: CaromBoard = CaromBoard()) {
             }
         }
 
-        if (checkWin() == 1) {
-            GameStatus.INACTIVE
+        if (checkWin()) {
+            setStatus(GameStatus.INACTIVE)
             winner = currentTurnPlayer
         }
 
         if (isCoinsOver()) {
-            GameStatus.Draw
+            setStatus(GameStatus.DRAW)
         }
     }
 }
