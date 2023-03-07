@@ -91,11 +91,12 @@ class GameTest {
 
         assertEquals(game.checkWin(), 1)
     }
-//    @Test
-//    fun `should be able to start game`() {
-//        val player = game.startGame()
-//
-//        assertEquals(player.person.name, "")
-//    }
+    @Test
+    fun `should be able to start game`() {
+        val game = Game()
+        game.play()
+
+        assertEquals(game.getStatus(),GameStatus.ACTIVE)
+    }
 
 }

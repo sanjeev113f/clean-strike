@@ -48,38 +48,7 @@ class Game {
         return 0
     }
 
-//    fun startGame(): Player {
-//        setStatus(GameStatus.ACTIVE)
-//        for (i:String in moves)
-//        {
-//            setPlayerTurn(flag)
-//
-//            when(i)
-//            {
-//                "Strike"       -> { CaromBoard().updateBlackCoinsCount(-1)
-//                                    currentTurnPlayer.updateGameScore(1) }
-//
-//                "Multi strike" -> currentTurnPlayer.updateGameScore(2)
-//
-//                "Red strike"   -> { CaromBoard().updateRedCoinsCount(-1)
-//                                    currentTurnPlayer.updateGameScore(3) }
-//
-//                "Striker strike" -> currentTurnPlayer.updateGameScore(-1)
-//
-//                "Defunct coin"    -> { CaromBoard().updateBlackCoinsCount(-1)
-//                                       currentTurnPlayer.updateGameScore(-2) }
-//            }
-//
-//            if ( checkWin() == 1) {
-//                GameStatus.INACTIVE
-//                return currentTurnPlayer
-//
-//            }
-//
-//        }
-//
-//        GameStatus.Draw
-//
-//        return Player(Person(""))
-//    }
+    fun play() {
+        setStatus(GameStatus.ACTIVE)
+    }
 }
