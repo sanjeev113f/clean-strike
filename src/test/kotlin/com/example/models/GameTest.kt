@@ -25,7 +25,7 @@ class GameTest {
         game.addPlayers(Player(Person("sanjeev")))
         game.addPlayers(Player(Person("rao")))
 
-        assertThrows<PlayerLimitExceededError>{game.addPlayers(Player(Person("sanjiv")))}
+        assertThrows<PlayerLimitExceededError> { game.addPlayers(Player(Person("sanjiv"))) }
     }
 
     @Test
@@ -48,7 +48,7 @@ class GameTest {
 
         game.addPlayers(player)
 
-        assertThrows<OutOfIndexError>{game.setPlayerTurn(5)}
+        assertThrows<OutOfIndexError> { game.setPlayerTurn(5) }
     }
 
     @Test
@@ -125,7 +125,8 @@ class GameTest {
 
         game.addPlayers(player1)
         game.addPlayers(player2)
-        val ls = listOf("Multi strike", "Strike", "Defunct coin", "Red strike", "Multi strike", "Defunct coin", "Red strike")
+        val ls =
+            listOf("Multi strike", "Strike", "Defunct coin", "Red strike", "Multi strike", "Defunct coin", "Red strike")
         for (moves in ls) {
             game.play(moves)
         }
@@ -143,12 +144,47 @@ class GameTest {
 
         game.addPlayers(player1)
         game.addPlayers(player2)
-        val ls = listOf("Striker strike", "Red strike", "Multi strike", " Striker strike", "Strike", "Strike", "Strike",
-            "Striker strike", "Striker strike", "Strike", "Strike", "Striker strike", "Striker strike", "Strike", "Strike")
+        val ls = listOf(
+            "Striker strike",
+            "Red strike",
+            "Multi strike",
+            " Striker strike",
+            "Strike",
+            "Strike",
+            "Strike",
+            "Striker strike",
+            "Striker strike",
+            "Strike",
+            "Strike",
+            "Striker strike",
+            "Striker strike",
+            "Strike",
+            "Strike"
+        )
         for (moves in ls) {
             game.play(moves)
         }
 
         assertEquals(game.getStatus(), GameStatus.DRAW)
+    }
+
+    @Test
+    fun `should be able to update score after three turns with 0 coins pocketed`() {
+        val game = Game()
+        val player1 = Player(Person("a"))
+        val player2 = Player(Person("b"))
+        val ls = listOf(
+            "Defunct coin", "Defunct coin", "Defunct coin", "Defunct coin",
+            "Defunct coin", "Defunct coin"
+        )
+
+        game.addPlayers(player1)
+        game.addPlayers(player2)
+        for (moves in ls) {
+            game.play(moves)
+        }
+
+        assertEquals(player1.getGameScore(), -8)
+        assertEquals(player2.getGameScore(), -8)
     }
 }
