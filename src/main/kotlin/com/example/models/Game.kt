@@ -36,8 +36,8 @@ class Game(private val board: CaromBoard = CaromBoard()) {
             winner = players[currentTurnPlayerIndex]
             return true
         }
-        if((score2 >= 5 && score2 >= score1 + 3)) {
-            winner = players[(currentTurnPlayerIndex+1)%2]
+        if ((score2 >= 5 && score2 >= score1 + 3)) {
+            winner = players[(currentTurnPlayerIndex + 1) % 2]
             return true
         }
         return false
@@ -45,10 +45,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     fun play(move: String) {
         if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
-        if(status == GameStatus.OVER || status == GameStatus.DRAW)  return
-        val moves = Moves()
-        if(!moves.validMoves.contains(move)) throw InValidMoveException()
-
+        if (status == GameStatus.OVER || status == GameStatus.DRAW) return
         lastThreeTurnsCoins = players[currentTurnPlayerIndex].getThreeSuccessiveTurnsCoins()
         setPlayerTurn(currentTurnPlayerIndex)
         executeMove(move)
@@ -92,6 +89,9 @@ class Game(private val board: CaromBoard = CaromBoard()) {
                 updateCoinAndScore(-1, 0, DEFUNCT_COIN_PENALTY)
                 updateFoulsAndTurnPoint(1, 1)
             }
+
+            else ->
+                throw InValidMoveException()
         }
     }
 

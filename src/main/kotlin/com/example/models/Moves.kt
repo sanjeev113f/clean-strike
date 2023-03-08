@@ -1,9 +1,12 @@
 package com.example.models
 
-class Moves (
-    val validMoves: List<String> = listOf("Strike",
+class Moves {
+    private var validMoves: List<String> = listOf(
+        "Strike",
         "Multi strike",
         "Red strike",
         "Striker strike",
-        "Defunct coin")
-)
+        "Defunct coin"
+    )
+    fun getValidMoves(): List<String> = validMoves
+}

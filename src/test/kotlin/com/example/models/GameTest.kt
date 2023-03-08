@@ -126,7 +126,7 @@ class GameTest {
     fun `should be able to throw exception for invalid move`() {
         val game = Game()
 
-        assertThrows<InValidMoveException> {game.play("abc")}
+        assertThrows<InValidMoveException> { game.play("abc") }
     }
 
     @Test
