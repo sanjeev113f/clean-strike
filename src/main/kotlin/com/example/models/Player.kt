@@ -15,7 +15,7 @@ class Player(val person: Person) {
 
     fun getFoulCount() = foulCount
 
-    fun getThreeSuccessiveTurnEarning() = threeSuccessiveTurnsCoins
+    fun getThreeSuccessiveTurnsCoins() = threeSuccessiveTurnsCoins
 
     fun updateFoulCount(value: Int) {
         foulCount += value
@@ -33,7 +33,7 @@ class Player(val person: Person) {
         gameScore += value
     }
 
-    fun updateSuccessiveTurnEarning(value: Int) {
+    fun updateSuccessiveTurnsCoins(value: Int) {
         threeSuccessiveTurnsCoins += value
     }
 }

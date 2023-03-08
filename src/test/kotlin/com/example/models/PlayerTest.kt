@@ -87,7 +87,7 @@ class PlayerTest {
         val person = Person("aa")
         val player = Player(person)
 
-        assertEquals(player.getThreeSuccessiveTurnEarning(), 0)
+        assertEquals(player.getThreeSuccessiveTurnsCoins(), 0)
     }
 
     @Test
@@ -95,9 +95,9 @@ class PlayerTest {
         val person = Person("aa")
         val player = Player(person)
 
-        player.updateSuccessiveTurnEarning(12)
+        player.updateSuccessiveTurnsCoins(12)
 
-        assertEquals(player.getThreeSuccessiveTurnEarning(), 12)
+        assertEquals(player.getThreeSuccessiveTurnsCoins(), 12)
     }
 
 }
