@@ -125,7 +125,15 @@ class GameTest {
 
         game.addPlayers(player1)
         game.addPlayers(player2)
-        val ls = listOf("Multi strike", "Strike", "Defunct coin", "Red strike", "Multi strike", "Defunct coin", "Red strike")
+        val ls = listOf(
+            "Multi strike",
+            "Strike",
+            "Defunct coin",
+            "Red strike",
+            "Multi strike",
+            "Defunct coin",
+            "Red strike"
+        )
         for (moves in ls) {
             game.play(moves)
         }
@@ -173,8 +181,12 @@ class GameTest {
         val player1 = Player(Person("a"))
         val player2 = Player(Person("b"))
         val ls = listOf(
-            "Defunct coin", "Defunct coin", "Defunct coin", "Defunct coin",
-            "Defunct coin", "Defunct coin"
+            "Defunct coin",
+            "Defunct coin",
+            "Defunct coin",
+            "Defunct coin",
+            "Defunct coin",
+            "Defunct coin"
         )
 
         game.addPlayers(player1)
