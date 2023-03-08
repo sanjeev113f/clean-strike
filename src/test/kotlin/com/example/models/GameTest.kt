@@ -116,7 +116,7 @@ class GameTest {
             game.play(moves)
         }
 
-        assertEquals(game.getStatus(), GameStatus.INACTIVE)
+        assertEquals(game.getStatus(), GameStatus.OVER)
         assertNotNull(game.getWinner())
         assertEquals("b", game.getWinner()!!.person.name)
     }

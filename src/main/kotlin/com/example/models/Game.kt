@@ -40,12 +40,13 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     fun play(move: String) {
         if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
+        if(status == GameStatus.OVER || status == GameStatus.DRAW)  return
         setPlayerTurn(currentTurnPlayerIndex)
         lastThreeTurnsCoins = players[currentTurnPlayerIndex].getThreeSuccessiveTurnsCoins()
         executeMove(move)
 
         if (checkWin()) {
-            setStatus(GameStatus.INACTIVE)
+            setStatus(GameStatus.OVER)
         }
 
         if (board.isCoinsOver()) {
