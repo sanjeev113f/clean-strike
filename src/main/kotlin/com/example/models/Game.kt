@@ -7,7 +7,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     private var players: MutableList<Player> = mutableListOf()
     private var currentTurnPlayerIndex = START_INDEX
     private var status = GameStatus.INACTIVE
-    private var lastThreeTurnsCoins = 0
+    private var lastThreeTurnsCoins = MIN_COUNT
 
     fun getStatus() = status
 
