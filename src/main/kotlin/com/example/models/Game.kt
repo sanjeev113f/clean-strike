@@ -32,8 +32,12 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     fun checkWin(): Boolean {
         val score1 = players[0].getGameScore()
         val score2 = players[1].getGameScore()
-        if ((score1 >= 5 && score1 >= score2 + 3) || (score2 >= 5 && score2 >= score1 + 3)) {
+        if ((score1 >= 5 && score1 >= score2 + 3)) {
             winner = players[currentTurnPlayerIndex]
+            return true
+        }
+        if((score2 >= 5 && score2 >= score1 + 3)) {
+            winner = players[(currentTurnPlayerIndex+1)%2]
             return true
         }
         return false

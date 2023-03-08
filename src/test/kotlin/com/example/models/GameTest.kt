@@ -90,7 +90,7 @@ class GameTest {
         val player2 = Player(Person("kumar"))
         game.addPlayers(player1)
         game.addPlayers(player2)
-        game.play("strike")
+        game.play("Strike")
 
         assertEquals(GameStatus.ACTIVE, game.getStatus())
     }
@@ -119,7 +119,7 @@ class GameTest {
 
         assertEquals(game.getStatus(), GameStatus.OVER)
         assertNotNull(game.getWinner())
-        assertEquals("b", game.getWinner()!!.person.name)
+        assertEquals("a", game.getWinner()!!.person.name)
     }
 
     @Test
@@ -142,7 +142,7 @@ class GameTest {
             "Striker strike",
             "Red strike",
             "Multi strike",
-            " Striker strike",
+            "Striker strike",
             "Strike",
             "Strike",
             "Strike",
