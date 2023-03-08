@@ -9,95 +9,107 @@ class PlayerTest {
         val person = Person("aa")
         val player = Player(person)
 
-        assertEquals(player.person, person)
+        assertEquals(person, player.person)
     }
 
     @Test
     fun `should give black coin count for player`() {
         val person = Person("aa")
         val player = Player(person)
+        val expected = MIN_COUNT
 
-        assertEquals(player.getBlackCoinCount(), 0)
+        assertEquals(expected, player.getBlackCoinCount())
     }
 
     @Test
     fun `should give red coin count for player`() {
         val person = Person("aa")
         val player = Player(person)
+        val expected = MIN_COUNT
 
-        assertEquals(player.getRedCoinCount(), 0)
+        assertEquals(expected, player.getRedCoinCount())
     }
+
     @Test
     fun `should add in red coin count for player`() {
         val person = Person("aa")
         val player = Player(person)
+        val expected = 5 + MIN_COUNT
 
         player.addRedCoin(5)
 
-        assertEquals(player.getRedCoinCount(), 5)
+        assertEquals(expected, player.getRedCoinCount())
     }
+
     @Test
     fun `should add in black coin count for player`() {
         val person = Person("aa")
         val player = Player(person)
+        val expected = MIN_COUNT + 10
 
         player.addBlackCoin(10)
 
-        assertEquals(player.getBlackCoinCount(), 10)
+        assertEquals(expected, player.getBlackCoinCount())
     }
 
     @Test
     fun `should give gameScore`() {
         val person = Person("aa")
         val player = Player(person)
+        val expected = MIN_GAME_SCORE
 
-        assertEquals(player.getGameScore(), 0)
+        assertEquals(expected, player.getGameScore())
     }
 
     @Test
     fun `should update gameScore`() {
         val person = Person("aa")
         val player = Player(person)
+        val expected = MIN_GAME_SCORE + 10
 
         player.updateGameScore(10)
 
-        assertEquals(player.getGameScore(), 10)
+        assertEquals(expected, player.getGameScore())
     }
 
     @Test
     fun `should give foulCount`() {
         val person = Person("aa")
         val player = Player(person)
+        val expected = MIN_COUNT
 
-        assertEquals(player.getFoulCount(), 0)
+        assertEquals(expected, player.getFoulCount())
     }
 
     @Test
     fun `should update foulCount`() {
         val person = Person("aa")
         val player = Player(person)
+        val expected = MIN_COUNT + 10
 
         player.updateFoulCount(10)
 
-        assertEquals(player.getFoulCount(), 10)
+        assertEquals(expected, player.getFoulCount())
     }
 
     @Test
     fun `should give threeSuccessiveTurnPoint`() {
         val person = Person("aa")
         val player = Player(person)
+        val expected = MIN_COUNT
 
-        assertEquals(player.getThreeSuccessiveTurnsCoins(), 0)
+        assertEquals(expected, player.getThreeSuccessiveTurnsCoins())
     }
 
     @Test
     fun `should update threeSuccessiveTurnPoint`() {
         val person = Person("aa")
         val player = Player(person)
+        val expected = MIN_COUNT + 12
 
         player.updateThreeSuccessiveTurnsCoins(12)
 
-        assertEquals(player.getThreeSuccessiveTurnsCoins(), 12)
+        assertEquals(expected, player.getThreeSuccessiveTurnsCoins())
     }
 
 }

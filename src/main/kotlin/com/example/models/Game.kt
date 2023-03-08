@@ -56,21 +56,21 @@ class Game(private val board: CaromBoard = CaromBoard()) {
                 board.updateBlackCoinsCount(-1)
                 currentTurnPlayer.updateGameScore(1)
                 currentTurnPlayer.addBlackCoin(1)
-                currentTurnPlayer.updateThreeSuccessiveTurnsCoins(-lastThreeTurnsCoins)
+                currentTurnPlayer.updateThreeSuccessiveTurnsCoins(-1 * lastThreeTurnsCoins)
             }
 
             "Multi strike" -> {
-                currentTurnPlayer.updateGameScore(2)
-                currentTurnPlayer.addBlackCoin(2)
-                board.updateBlackCoinsCount(-2)
+                currentTurnPlayer.updateGameScore(MULTI_STRIKE_SCORE)
+                currentTurnPlayer.addBlackCoin(MULTI_STRIKE_COINS_COUNT)
+                board.updateBlackCoinsCount(-1 * MULTI_STRIKE_COINS_COUNT)
                 currentTurnPlayer.updateThreeSuccessiveTurnsCoins(-lastThreeTurnsCoins)
             }
 
             "Red strike" -> {
                 board.updateRedCoinsCount(-1)
-                currentTurnPlayer.updateGameScore(3)
+                currentTurnPlayer.updateGameScore(RED_STRIKE_SCORE)
                 currentTurnPlayer.addRedCoin(1)
-                currentTurnPlayer.updateThreeSuccessiveTurnsCoins(-lastThreeTurnsCoins)
+                currentTurnPlayer.updateThreeSuccessiveTurnsCoins(-1 * lastThreeTurnsCoins)
             }
 
             "Striker strike" -> {
@@ -82,7 +82,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
             "Defunct coin" -> {
                 board.updateBlackCoinsCount(-1)
-                currentTurnPlayer.updateGameScore(-2)
+                currentTurnPlayer.updateGameScore(DEFUNCT_COIN_PENALTY)
                 currentTurnPlayer.updateFoulCount(1)
                 currentTurnPlayer.updateThreeSuccessiveTurnsCoins(1)
             }
@@ -101,15 +101,15 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     private fun checkAndUpdateForFouls() {
         if (currentTurnPlayer.getFoulCount() == MAX_FOUL_COUNT) {
-            currentTurnPlayer.updateGameScore(-1)
+            currentTurnPlayer.updateGameScore(NORMAL_PENALTY)
             currentTurnPlayer.updateFoulCount(-MAX_FOUL_COUNT)
         }
     }
 
     private fun checkAndUpdateForNullTurns() {
-        if (currentTurnPlayer.getThreeSuccessiveTurnsCoins() == 3) {
-            currentTurnPlayer.updateGameScore(-1)
-            currentTurnPlayer.updateThreeSuccessiveTurnsCoins(-3)
+        if (currentTurnPlayer.getThreeSuccessiveTurnsCoins() == MAX_NULL_TURNS) {
+            currentTurnPlayer.updateGameScore(NORMAL_PENALTY)
+            currentTurnPlayer.updateThreeSuccessiveTurnsCoins(-MAX_NULL_TURNS)
         }
     }
 }

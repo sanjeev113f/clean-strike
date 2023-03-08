@@ -8,39 +8,41 @@ class CaromBoardTest {
     fun `should give count of Red Coins`() {
         val count = CaromBoard().getRedCoinsCount()
 
-        assertEquals(count, 1)
+        assertEquals(COUNT_OF_RED_COINS, count)
     }
 
     @Test
     fun `should give count of black Coins`() {
         val count = CaromBoard().getBlackCoinsCount()
 
-        assertEquals(count, 9)
+        assertEquals(COUNT_OF_BLACK_COINS, count)
     }
 
     @Test
     fun `should give count of striker`() {
         val count = CaromBoard().getStrikerCount()
 
-        assertEquals(count, 1)
+        assertEquals(COUNT_OF_STRIKER, count)
     }
 
     @Test
     fun `should update count of Red coins`() {
         val board = CaromBoard()
+        val temp = 1
 
-        board.updateRedCoinsCount(1)
+        board.updateRedCoinsCount(temp)
 
-        assertEquals(board.getRedCoinsCount(), 2)
+        assertEquals(COUNT_OF_RED_COINS + temp, board.getRedCoinsCount())
     }
 
     @Test
     fun `should update count of black coins`() {
         val board = CaromBoard()
+        val temp = -1
 
-        board.updateBlackCoinsCount(-1)
+        board.updateBlackCoinsCount(temp)
 
-        assertEquals(board.getBlackCoinsCount(), 8)
+        assertEquals(COUNT_OF_BLACK_COINS + temp, board.getBlackCoinsCount())
     }
 
 }

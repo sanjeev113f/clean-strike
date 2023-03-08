@@ -15,3 +15,19 @@ const val START_INDEX = 0
 const val PLAYERS_COUNT = 2
 
 const val MAX_FOUL_COUNT = 3
+
+const val MAX_NULL_TURNS = 3
+
+const val NORMAL_PENALTY = -1
+
+const val MULTI_STRIKE_SCORE = 2
+
+const val MULTI_STRIKE_COINS_COUNT = 2
+
+const val RED_STRIKE_SCORE = 3
+
+const val DEFUNCT_COIN_PENALTY = -2
+
+
+
+

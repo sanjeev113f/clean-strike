@@ -16,7 +16,7 @@ class GameTest {
 
         game.setStatus(GameStatus.ACTIVE)
 
-        assertEquals(game.getStatus(), GameStatus.ACTIVE)
+        assertEquals(GameStatus.ACTIVE, game.getStatus())
     }
 
     @Test
@@ -37,7 +37,7 @@ class GameTest {
         game.addPlayers(player)
         game.setPlayerTurn(0)
 
-        assertEquals(game.getTurnPlayer(), player)
+        assertEquals(player, game.getTurnPlayer())
     }
 
     @Test
@@ -60,7 +60,7 @@ class GameTest {
         game.addPlayers(player1)
         game.addPlayers(player2)
 
-        assertEquals(game.checkWin(), false)
+        assertEquals(false, game.checkWin())
     }
 
     @Test
@@ -74,7 +74,7 @@ class GameTest {
         player2.updateGameScore(5)
 
         assertEquals(game.checkWin(), true)
-        assertEquals(game.getStatus(), GameStatus.INACTIVE)
+        assertEquals(GameStatus.INACTIVE, game.getStatus())
     }
 
     @Test
@@ -88,7 +88,7 @@ class GameTest {
         player1.updateGameScore(10)
         player2.updateGameScore(2)
 
-        assertEquals(game.checkWin(), true)
+        assertEquals(true, game.checkWin())
     }
 
     @Test
@@ -102,7 +102,7 @@ class GameTest {
         game.addPlayers(player2)
         game.play("strike")
 
-        assertEquals(game.getStatus(), GameStatus.ACTIVE)
+        assertEquals(GameStatus.ACTIVE, game.getStatus())
     }
 
     @Test
@@ -113,7 +113,7 @@ class GameTest {
         board.updateBlackCoinsCount(-9)
         board.updateRedCoinsCount(-1)
 
-        assertEquals(game.isCoinsOver(), true)
+        assertEquals(true, game.isCoinsOver())
     }
 
     @Test
@@ -139,7 +139,7 @@ class GameTest {
         }
 
         assertEquals(game.getStatus(), GameStatus.INACTIVE)
-        assertEquals(game.getWinner().person.name, "a")
+        assertEquals("a", game.getWinner().person.name)
     }
 
     @Test
@@ -172,7 +172,7 @@ class GameTest {
             game.play(moves)
         }
 
-        assertEquals(game.getStatus(), GameStatus.DRAW)
+        assertEquals(GameStatus.DRAW, game.getStatus())
     }
 
     @Test
@@ -188,6 +188,9 @@ class GameTest {
             "Defunct coin",
             "Defunct coin"
         )
+        val expected1 = 3 * DEFUNCT_COIN_PENALTY + 2 * NORMAL_PENALTY
+        val expected2 = 3 * DEFUNCT_COIN_PENALTY + 2 * NORMAL_PENALTY
+
 
         game.addPlayers(player1)
         game.addPlayers(player2)
@@ -195,7 +198,7 @@ class GameTest {
             game.play(moves)
         }
 
-        assertEquals(player1.getGameScore(), -8)
-        assertEquals(player2.getGameScore(), -8)
+        assertEquals(expected1, player1.getGameScore())
+        assertEquals(expected2, player2.getGameScore())
     }
 }
