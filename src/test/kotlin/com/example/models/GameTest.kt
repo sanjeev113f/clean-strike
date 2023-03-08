@@ -1,7 +1,7 @@
 package com.example.models
 
-import com.example.error.OutOfIndexError
-import com.example.error.PlayerLimitExceededError
+import com.example.error.OutOfIndexException
+import com.example.error.PlayerLimitExceededException
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -25,7 +25,7 @@ class GameTest {
         game.addPlayers(Player(Person("sanjeev")))
         game.addPlayers(Player(Person("rao")))
 
-        assertThrows<PlayerLimitExceededError> { game.addPlayers(Player(Person("sanjiv"))) }
+        assertThrows<PlayerLimitExceededException> { game.addPlayers(Player(Person("sanjiv"))) }
     }
 
     @Test
@@ -48,7 +48,7 @@ class GameTest {
 
         game.addPlayers(player)
 
-        assertThrows<OutOfIndexError> { game.setPlayerTurn(5) }
+        assertThrows<OutOfIndexException> { game.setPlayerTurn(5) }
     }
 
     @Test
