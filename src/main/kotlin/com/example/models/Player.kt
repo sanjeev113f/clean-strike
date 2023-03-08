@@ -33,7 +33,7 @@ class Player(val person: Person) {
         gameScore += value
     }
 
-    fun updateSuccessiveTurnsCoins(value: Int) {
+    fun updateThreeSuccessiveTurnsCoins(value: Int) {
         threeSuccessiveTurnsCoins += value
     }
 }
