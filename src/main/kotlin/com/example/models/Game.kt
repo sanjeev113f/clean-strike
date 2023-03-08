@@ -42,6 +42,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
         if(status == GameStatus.OVER || status == GameStatus.DRAW)  return
 
+
         lastThreeTurnsCoins = players[currentTurnPlayerIndex].getThreeSuccessiveTurnsCoins()
         setPlayerTurn(currentTurnPlayerIndex)
         executeMove(move)
