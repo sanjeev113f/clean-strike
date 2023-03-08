@@ -41,6 +41,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         val score1 = players[0].getGameScore()
         val score2 = players[1].getGameScore()
         if ((score1 >= 5 && score1 >= score2 + 3) || (score2 >= 5 && score2 >= score1 + 3)) {
+            winner = currentTurnPlayer
             return true
         }
         return false
@@ -89,7 +90,6 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         }
         if (checkWin()) {
             setStatus(GameStatus.INACTIVE)
-            winner = currentTurnPlayer
         }
 
         if (isCoinsOver()) {
