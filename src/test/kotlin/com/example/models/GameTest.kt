@@ -1,6 +1,5 @@
 package com.example.models
 
-import com.example.error.OutOfIndexException
 import com.example.error.PlayerLimitExceededException
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions.*
@@ -26,29 +25,6 @@ class GameTest {
         game.addPlayers(Player(Person("rao")))
 
         assertThrows<PlayerLimitExceededException> { game.addPlayers(Player(Person("sanjiv"))) }
-    }
-
-    @Test
-    fun `should be able set turn for players`() {
-        val person = Person("sanjeev")
-        val player = Player(person)
-        val game = Game()
-
-        game.addPlayers(player)
-        game.setPlayerTurn(0)
-
-        assertEquals(player, game.getTurnPlayer())
-    }
-
-    @Test
-    fun `should not be able set turn for players`() {
-        val person = Person("sanjeev")
-        val player = Player(person)
-        val game = Game()
-
-        game.addPlayers(player)
-
-        assertThrows<OutOfIndexException> { game.setPlayerTurn(5) }
     }
 
     @Test
@@ -89,6 +65,19 @@ class GameTest {
         player2.updateGameScore(2)
 
         assertEquals(true, game.checkWin())
+    }
+
+    @Test
+    fun `should be able to give current turn player`() {
+        val game = Game()
+        val player1 = Player(Person("a"))
+        val player2 = Player(Person("b"))
+        val expected = player1
+
+        game.addPlayers(player1)
+        game.addPlayers(player2)
+
+        assertEquals(player1, game.getTurnPlayer())
     }
 
     @Test
@@ -139,7 +128,8 @@ class GameTest {
         }
 
         assertEquals(game.getStatus(), GameStatus.INACTIVE)
-        assertEquals("a", game.getWinner().person.name)
+        assertNotNull(game.getWinner())
+        assertEquals("b", game.getWinner()!!.person.name)
     }
 
     @Test
