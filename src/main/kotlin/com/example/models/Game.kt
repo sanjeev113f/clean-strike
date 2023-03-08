@@ -55,6 +55,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         checkAndUpdateForFouls()
     }
 
+    private var lastThreeTurnsCoins = MIN_COUNT
     private fun executeMove(move: String) {
         when (move) {
             "Strike" -> {
