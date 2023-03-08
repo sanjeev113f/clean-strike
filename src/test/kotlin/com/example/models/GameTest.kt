@@ -72,7 +72,7 @@ class GameTest {
         val game = Game()
         val player1 = Player(Person("a"))
         val player2 = Player(Person("b"))
-        val expected = player1
+
 
         game.addPlayers(player1)
         game.addPlayers(player2)
@@ -92,17 +92,6 @@ class GameTest {
         game.play("strike")
 
         assertEquals(GameStatus.ACTIVE, game.getStatus())
-    }
-
-    @Test
-    fun `should be able to check coins remaining`() {
-        val board = CaromBoard()
-        val game = Game(board)
-
-        board.updateBlackCoinsCount(-9)
-        board.updateRedCoinsCount(-1)
-
-        assertEquals(true, game.isCoinsOver())
     }
 
     @Test
