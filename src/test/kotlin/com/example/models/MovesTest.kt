@@ -3,13 +3,12 @@ package com.example.models
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class MovesTest
-{
+class MovesTest {
     @Test
     fun `should be able to check a move`() {
-        val moves= Moves()
+        val moves = Moves()
         val expected = "Strike"
 
-        assertEquals(expected, moves.validMoves[0])
+        assertEquals(expected, moves.getValidMoves()[0])
     }
 }
