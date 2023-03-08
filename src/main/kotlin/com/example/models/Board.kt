@@ -18,4 +18,9 @@ class CaromBoard {
     fun updateBlackCoinsCount(value: Int) {
         blackCoins += value
     }
+
+    fun isCoinsOver(): Boolean {
+        if (blackCoins + redCoins == 0) return true
+        return false
+    }
 }

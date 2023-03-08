@@ -45,4 +45,14 @@ class CaromBoardTest {
         assertEquals(COUNT_OF_BLACK_COINS + temp, board.getBlackCoinsCount())
     }
 
+    @Test
+    fun `should be able to check coins remaining`() {
+        val board = CaromBoard()
+
+        board.updateBlackCoinsCount(-9)
+        board.updateRedCoinsCount(-1)
+
+        assertEquals(true, board.isCoinsOver())
+    }
+
 }

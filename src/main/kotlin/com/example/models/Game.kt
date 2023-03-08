@@ -7,7 +7,6 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     private var players: MutableList<Player> = mutableListOf()
     private var currentTurnPlayerIndex = START_INDEX
     private var status = GameStatus.INACTIVE
-    private var lastThreeTurnsCoins = MIN_COUNT
 
     fun getStatus() = status
 
@@ -22,11 +21,6 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     private fun setPlayerTurn(index: Int) {
         players[currentTurnPlayerIndex] = players[index]
         currentTurnPlayerIndex = (index + 1) % PLAYERS_COUNT
-    }
-
-    fun isCoinsOver(): Boolean {
-        if (board.getBlackCoinsCount() + board.getRedCoinsCount() == 0) return true
-        return false
     }
 
     fun addPlayers(player: Player) {
@@ -54,7 +48,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
             setStatus(GameStatus.INACTIVE)
         }
 
-        if (isCoinsOver()) {
+        if (board.isCoinsOver()) {
             setStatus(GameStatus.DRAW)
         }
         checkAndUpdateForNullTurns()
