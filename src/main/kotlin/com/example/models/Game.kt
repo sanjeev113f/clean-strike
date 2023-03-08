@@ -9,6 +9,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     private var players: ArrayList<Player> = java.util.ArrayList<Player>()
     private var currentTurnPlayerIndex = START_INDEX
     private var status = GameStatus.INACTIVE
+    private var lastThreeTurnsCoins = 0
 
     fun getStatus() = status
 
@@ -46,32 +47,36 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     }
 
     fun play(move: String) {
-        if(status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
+        if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
         setPlayerTurn(currentTurnPlayerIndex)
-        checkAndUpdateForFouls()
+        lastThreeTurnsCoins = currentTurnPlayer.getThreeSuccessiveTurnsCoins()
 
         when (move) {
             "Strike" -> {
                 board.updateBlackCoinsCount(-1)
                 currentTurnPlayer.updateGameScore(1)
                 currentTurnPlayer.addBlackCoin(1)
+                currentTurnPlayer.updateThreeSuccessiveTurnsCoins(-lastThreeTurnsCoins)
             }
 
             "Multi strike" -> {
                 currentTurnPlayer.updateGameScore(2)
                 currentTurnPlayer.addBlackCoin(2)
                 board.updateBlackCoinsCount(-2)
+                currentTurnPlayer.updateThreeSuccessiveTurnsCoins(-lastThreeTurnsCoins)
             }
 
             "Red strike" -> {
                 board.updateRedCoinsCount(-1)
                 currentTurnPlayer.updateGameScore(3)
                 currentTurnPlayer.addRedCoin(1)
+                currentTurnPlayer.updateThreeSuccessiveTurnsCoins(-lastThreeTurnsCoins)
             }
 
             "Striker strike" -> {
                 currentTurnPlayer.updateGameScore(-1)
                 currentTurnPlayer.updateFoulCount(1)
+                currentTurnPlayer.updateThreeSuccessiveTurnsCoins(1)
             }
 
 
@@ -79,9 +84,9 @@ class Game(private val board: CaromBoard = CaromBoard()) {
                 board.updateBlackCoinsCount(-1)
                 currentTurnPlayer.updateGameScore(-2)
                 currentTurnPlayer.updateFoulCount(1)
+                currentTurnPlayer.updateThreeSuccessiveTurnsCoins(1)
             }
         }
-
         if (checkWin()) {
             setStatus(GameStatus.INACTIVE)
             winner = currentTurnPlayer
@@ -90,12 +95,21 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         if (isCoinsOver()) {
             setStatus(GameStatus.DRAW)
         }
+        checkAndUpdateForNullTurns()
+        checkAndUpdateForFouls()
     }
 
     private fun checkAndUpdateForFouls() {
         if (currentTurnPlayer.getFoulCount() == MAX_FOUL_COUNT) {
             currentTurnPlayer.updateGameScore(-1)
             currentTurnPlayer.updateFoulCount(-MAX_FOUL_COUNT)
+        }
+    }
+
+    private fun checkAndUpdateForNullTurns() {
+        if (currentTurnPlayer.getThreeSuccessiveTurnsCoins() == 3) {
+            currentTurnPlayer.updateGameScore(-1)
+            currentTurnPlayer.updateThreeSuccessiveTurnsCoins(-3)
         }
     }
 }
