@@ -28,6 +28,8 @@ const val RED_STRIKE_SCORE = 3
 
 const val DEFUNCT_COIN_PENALTY = -2
 
+const val STRIKER_PENALTY_VALUE = -1
+
 
 
 
