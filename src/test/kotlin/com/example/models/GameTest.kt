@@ -1,5 +1,6 @@
 package com.example.models
 
+import com.example.error.InValidMoveException
 import com.example.error.PlayerLimitExceededException
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions.*
@@ -119,6 +120,13 @@ class GameTest {
         assertEquals(game.getStatus(), GameStatus.OVER)
         assertNotNull(game.getWinner())
         assertEquals("b", game.getWinner()!!.person.name)
+    }
+
+    @Test
+    fun `should be able to throw exception for invalid move`() {
+        val game = Game()
+
+        assertThrows<InValidMoveException> {game.play("abc")}
     }
 
     @Test
