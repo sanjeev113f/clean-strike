@@ -19,20 +19,6 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         players.add(player)
     }
 
-    fun checkWin(): Boolean {
-        val score1 = players[0].getGameScore()
-        val score2 = players[1].getGameScore()
-        if ((score1 >= MIN_INDIVIDUAL_SCORE_TO_WIN && score1 >= (score2 + MIN_RELATIVE_SCORE_FACTOR_TO_WIN))) {
-            winner = players[currentTurnPlayerIndex]
-            return true
-        }
-        if ((score2 >= MIN_INDIVIDUAL_SCORE_TO_WIN && score2 >= (score1 + MIN_RELATIVE_SCORE_FACTOR_TO_WIN))) {
-            winner = players[(currentTurnPlayerIndex + 1) % 2]
-            return true
-        }
-        return false
-    }
-
     fun play(move: String): GameStatus {
         if (status == GameStatus.OVER || status == GameStatus.DRAW) return status
         if (players.size < 2) throw InSufficientPlayersException(players.size)
@@ -41,9 +27,11 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         executeMove(move)
         checkAndUpdateForNonPocketedTurns()
         checkAndUpdateFoulCountAndScore()
+        checkAndSetWinner()
 
-        if (checkWin()) {
+        if (winner != null) {
             setStatus(GameStatus.OVER)
+
         } else if (board.isCoinsOver()) {
             setStatus(GameStatus.DRAW)
         }
@@ -122,5 +110,19 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     private fun setPlayerTurn(index: Int) {
         players[currentTurnPlayerIndex] = players[index]
         currentTurnPlayerIndex = (index + 1) % PLAYERS_COUNT
+    }
+
+    private fun checkAndSetWinner(): Player? {
+        val score1 = players[0].getGameScore()
+        val score2 = players[1].getGameScore()
+        if ((score1 >= MIN_INDIVIDUAL_SCORE_TO_WIN && score1 >= (score2 + MIN_RELATIVE_SCORE_FACTOR_TO_WIN))) {
+            winner = players[currentTurnPlayerIndex]
+            return winner
+        }
+        if ((score2 >= MIN_INDIVIDUAL_SCORE_TO_WIN && score2 >= (score1 + MIN_RELATIVE_SCORE_FACTOR_TO_WIN))) {
+            winner = players[(currentTurnPlayerIndex + 1) % 2]
+            return winner
+        }
+        return null
     }
 }
