@@ -48,8 +48,8 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
         setPlayerTurn(currentTurnPlayerIndex)
         executeMove(move)
-        checkAndUpdateForNullTurns()
-        checkAndUpdateForFouls()
+        checkAndUpdateForNonPocketedTurns()
+        checkAndUpdateFoulCountAndScore()
 
         if (checkWin()) {
             setStatus(GameStatus.OVER)
@@ -105,17 +105,17 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         players[currentTurnPlayerIndex].updateThreeSuccessiveTurnsCoins(successiveTurnUpdate)
     }
 
-    private fun checkAndUpdateForFouls() {
+    private fun checkAndUpdateFoulCountAndScore() {
         if (players[currentTurnPlayerIndex].getFoulCount() == MAX_FOUL_COUNT) {
             players[currentTurnPlayerIndex].updateGameScore(NORMAL_PENALTY)
             players[currentTurnPlayerIndex].updateFoulCount(-1 * MAX_FOUL_COUNT)
         }
     }
 
-    private fun checkAndUpdateForNullTurns() {
-        if (players[currentTurnPlayerIndex].getThreeSuccessiveTurnsCoins() == MAX_NULL_TURNS) {
+    private fun checkAndUpdateForNonPocketedTurns() {
+        if (players[currentTurnPlayerIndex].getThreeSuccessiveTurnsCoins() == MAX_NON_POCKETED_TURNS_COUNT) {
             players[currentTurnPlayerIndex].updateGameScore(NORMAL_PENALTY)
-            players[currentTurnPlayerIndex].updateThreeSuccessiveTurnsCoins(-1 * MAX_NULL_TURNS)
+            players[currentTurnPlayerIndex].updateThreeSuccessiveTurnsCoins(-1 * MAX_NON_POCKETED_TURNS_COUNT)
         }
     }
 }

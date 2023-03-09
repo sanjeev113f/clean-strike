@@ -16,7 +16,7 @@ const val PLAYERS_COUNT = 2
 
 const val MAX_FOUL_COUNT = 3
 
-const val MAX_NULL_TURNS = 3
+const val MAX_NON_POCKETED_TURNS_COUNT = 3
 
 const val NORMAL_PENALTY = -1
 
