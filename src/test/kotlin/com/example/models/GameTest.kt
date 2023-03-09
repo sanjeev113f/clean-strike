@@ -106,7 +106,7 @@ class GameTest {
         game.addPlayers(player2)
         val ls = listOf(
 
-            "Multi strike", "Strike", "Multi strike", "Defunct coin", "Multi strike", "Defunct coin"
+            "Multi strike", "Strike", "Multi strike", "Defunct coin", "Multi strike", "None"
         )
         for (moves in ls) {
             game.play(moves)
