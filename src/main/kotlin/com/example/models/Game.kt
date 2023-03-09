@@ -14,11 +14,6 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     fun getWinner() = winner
 
-    private fun setPlayerTurn(index: Int) {
-        players[currentTurnPlayerIndex] = players[index]
-        currentTurnPlayerIndex = (index + 1) % PLAYERS_COUNT
-    }
-
     fun addPlayers(player: Player) {
         if (players.size == PLAYERS_COUNT) throw PlayerLimitExceededException()
         players.add(player)
@@ -122,5 +117,10 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     private fun setStatus(newStatus: GameStatus) {
         status = newStatus
+    }
+
+    private fun setPlayerTurn(index: Int) {
+        players[currentTurnPlayerIndex] = players[index]
+        currentTurnPlayerIndex = (index + 1) % PLAYERS_COUNT
     }
 }
