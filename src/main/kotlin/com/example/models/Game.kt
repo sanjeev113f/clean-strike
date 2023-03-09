@@ -53,9 +53,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
         if (checkWin()) {
             setStatus(GameStatus.OVER)
-        }
-
-        if (board.isCoinsOver()) {
+        } else if (board.isCoinsOver()) {
             setStatus(GameStatus.DRAW)
         }
     }
