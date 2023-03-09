@@ -1,7 +1,9 @@
 package com.example.models
 
+import com.example.error.InValidMoveException
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class CaromBoardTest {
     @Test
@@ -53,6 +55,13 @@ class CaromBoardTest {
         board.updateRedCoinsCount(-1)
 
         assertEquals(true, board.isCoinsOver())
+    }
+
+    @Test
+    fun `should throw exception for negative coin black count`() {
+        val board = CaromBoard()
+
+        assertThrows<InValidMoveException>{board.updateRedCoinsCount(-10)}
     }
 
 }
