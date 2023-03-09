@@ -8,7 +8,7 @@ import com.example.models.Player
 
 fun main() {
     val board = CaromBoard()
-    val game= Game(board)
+    val game = Game(board)
 
     val player1 = Player(Person("sanjeev"))
     val player2 = Player(Person("kumar"))
@@ -16,12 +16,11 @@ fun main() {
     game.addPlayers(player2)
 
     val ls = listOf("Multi strike", "strike", "Red strike", "Defunct coin")
-    for(element in ls)
-    {
+    for (element in ls) {
         game.play(element)
     }
 
-
+    println(game.getWinner())
 }
 
 
