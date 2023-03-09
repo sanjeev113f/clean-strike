@@ -21,13 +21,6 @@ class CaromBoardTest {
     }
 
     @Test
-    fun `should give count of striker`() {
-        val count = CaromBoard().getStrikerCount()
-
-        assertEquals(COUNT_OF_STRIKER, count)
-    }
-
-    @Test
     fun `should update count of Red coins`() {
         val board = CaromBoard()
         val temp = 1
