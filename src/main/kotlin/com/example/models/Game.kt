@@ -27,11 +27,11 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     fun checkWin(): Boolean {
         val score1 = players[0].getGameScore()
         val score2 = players[1].getGameScore()
-        if ((score1 >= 5 && score1 >= score2 + 3)) {
+        if ((score1 >= MIN_INDIVIDUAL_SCORE_TO_WIN && score1 >= (score2 + MIN_RELATIVE_SCORE_FACTOR_TO_WIN))) {
             winner = players[currentTurnPlayerIndex]
             return true
         }
-        if ((score2 >= 5 && score2 >= score1 + 3)) {
+        if ((score2 >= MIN_INDIVIDUAL_SCORE_TO_WIN && score2 >= (score1 + MIN_RELATIVE_SCORE_FACTOR_TO_WIN))) {
             winner = players[(currentTurnPlayerIndex + 1) % 2]
             return true
         }
