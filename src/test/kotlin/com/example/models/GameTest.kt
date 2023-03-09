@@ -60,19 +60,6 @@ class GameTest {
     }
 
     @Test
-    fun `should be able to give current turn player`() {
-        val game = Game()
-        val player1 = Player(Person("a"))
-        val player2 = Player(Person("b"))
-
-
-        game.addPlayers(player1)
-        game.addPlayers(player2)
-
-        assertEquals(player1, game.getTurnPlayer())
-    }
-
-    @Test
     fun `should be able to start game`() {
         val board = CaromBoard()
         val game = Game(board)

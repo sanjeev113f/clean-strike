@@ -12,8 +12,6 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     fun getStatus() = status
 
-    fun getTurnPlayer() = players[currentTurnPlayerIndex]
-
     fun getWinner() = winner
 
     private fun setPlayerTurn(index: Int) {
