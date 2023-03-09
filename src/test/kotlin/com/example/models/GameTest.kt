@@ -13,17 +13,17 @@ class GameTest {
     @Test
     fun `should not be able add player more than 2`() {
         val game = Game()
-        game.addPlayers(Player(Person("sanjeev")))
-        game.addPlayers(Player(Person("rao")))
+        game.addPlayers(Player("sanjeev"))
+        game.addPlayers(Player("rao"))
 
-        assertThrows<PlayerLimitExceededException> { game.addPlayers(Player(Person("sanjiv"))) }
+        assertThrows<PlayerLimitExceededException> { game.addPlayers(Player("sanjiv")) }
     }
 
     @Test
     fun `should be able to check win`() {
         val game = Game()
-        val player1 = Player(Person("a"))
-        val player2 = Player(Person("b"))
+        val player1 = Player("a")
+        val player2 = Player("b")
 
         game.addPlayers(player1)
         game.addPlayers(player2)
@@ -34,8 +34,8 @@ class GameTest {
     @Test
     fun `should be able to check win and update status`() {
         val game = Game()
-        val player1 = Player(Person("a"))
-        val player2 = Player(Person("b"))
+        val player1 = Player("a")
+        val player2 = Player("b")
 
         game.addPlayers(player1)
         game.addPlayers(player2)
@@ -48,8 +48,8 @@ class GameTest {
     @Test
     fun `should be able to check win with updated score`() {
         val game = Game()
-        val player1 = Player(Person("a"))
-        val player2 = Player(Person("b"))
+        val player1 = Player("a")
+        val player2 = Player("b")
 
         game.addPlayers(player1)
         game.addPlayers(player2)
@@ -64,8 +64,8 @@ class GameTest {
         val board = CaromBoard()
         val game = Game(board)
 
-        val player1 = Player(Person("sanjeev"))
-        val player2 = Player(Person("kumar"))
+        val player1 = Player("sanjeev")
+        val player2 = Player("kumar")
         game.addPlayers(player1)
         game.addPlayers(player2)
         game.play("Strike")
@@ -77,8 +77,8 @@ class GameTest {
     fun `should be able to play the game with win as result`() {
         val board = CaromBoard()
         val game = Game(board)
-        val player1 = Player(Person("a"))
-        val player2 = Player(Person("b"))
+        val player1 = Player("a")
+        val player2 = Player("b")
 
         game.addPlayers(player1)
         game.addPlayers(player2)
@@ -92,14 +92,14 @@ class GameTest {
 
         assertEquals(GameStatus.OVER, game.getStatus())
         assertNotNull(game.getWinner())
-        assertEquals("a", game.getWinner()!!.person.name)
+        assertEquals("a", game.getWinner()!!.getName())
     }
 
     @Test
     fun `should be able to throw exception for invalid move`() {
         val game = Game()
-        val player1 = Player(Person("a"))
-        val player2 = Player(Person("b"))
+        val player1 = Player("a")
+        val player2 = Player("b")
 
         game.addPlayers(player1)
         game.addPlayers(player2)
@@ -111,8 +111,8 @@ class GameTest {
     fun `should be able to play the game with Draw as result`() {
         val board = CaromBoard()
         val game = Game(board)
-        val player1 = Player(Person("a"))
-        val player2 = Player(Person("b"))
+        val player1 = Player("a")
+        val player2 = Player("b")
         val ls = listOf(
             "Striker strike",
             "Red strike",
@@ -143,8 +143,8 @@ class GameTest {
     @Test
     fun `should be able to update score after three turns with 0 coins pocketed`() {
         val game = Game()
-        val player1 = Player(Person("a"))
-        val player2 = Player(Person("b"))
+        val player1 = Player("a")
+        val player2 = Player("b")
         val ls = listOf(
             "Defunct coin", "Defunct coin", "Defunct coin", "Defunct coin", "Defunct coin", "Defunct coin"
         )

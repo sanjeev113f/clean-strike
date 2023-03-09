@@ -3,15 +3,14 @@ package com.example
 
 import com.example.models.CaromBoard
 import com.example.models.Game
-import com.example.models.Person
 import com.example.models.Player
 
 fun main() {
     val board = CaromBoard()
     val game = Game(board)
 
-    val player1 = Player(Person("sanjeev"))
-    val player2 = Player(Person("kumar"))
+    val player1 = Player("sanjeev")
+    val player2 = Player("kumar")
     game.addPlayers(player1)
     game.addPlayers(player2)
 

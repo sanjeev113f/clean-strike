@@ -1,11 +1,12 @@
 package com.example.models
 
-class Player(val person: Person) {
+class Player(nameofPlayer: String) {
     private var gameScore = MIN_GAME_SCORE
     private var foulCount = MIN_COUNT
     private var threeSuccessiveTurnsCoins = MIN_COUNT
     private var blackCoinCount = MIN_COUNT
     private var redCoinCount = MIN_COUNT
+    private var name = nameofPlayer
 
     fun getBlackCoinCount() = blackCoinCount
 
@@ -20,6 +21,8 @@ class Player(val person: Person) {
     fun updateFoulCount(value: Int) {
         foulCount += value
     }
+
+    fun getName() = name
 
     fun addRedCoin(value: Int) {
         redCoinCount += value
