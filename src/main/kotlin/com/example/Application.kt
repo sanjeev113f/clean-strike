@@ -1,5 +1,6 @@
 package com.example
 
+
 import com.example.models.CaromBoard
 import com.example.models.Game
 import com.example.models.Person
@@ -15,10 +16,12 @@ fun main() {
     game.addPlayers(player2)
 
     val ls = listOf("Multi strike", "strike", "Red strike", "Defunct coin")
-    for(index in 0..2)
+    for(element in ls)
     {
-        game.play(ls[index])
+        game.play(element)
     }
+
+
 }
 
 

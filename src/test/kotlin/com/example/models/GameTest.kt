@@ -125,6 +125,11 @@ class GameTest {
     @Test
     fun `should be able to throw exception for invalid move`() {
         val game = Game()
+        val player1 = Player(Person("a"))
+        val player2 = Player(Person("b"))
+
+        game.addPlayers(player1)
+        game.addPlayers(player2)
 
         assertThrows<InValidMoveException> { game.play("abc") }
     }
