@@ -105,12 +105,8 @@ class GameTest {
         game.addPlayers(player1)
         game.addPlayers(player2)
         val ls = listOf(
-            "Multi strike",
-            "Strike",
-            "Multi strike",
-            "Defunct coin",
-            "Multi strike",
-            "Defunct coin"
+
+            "Multi strike", "Strike", "Multi strike", "Defunct coin", "Multi strike", "Defunct coin"
         )
         for (moves in ls) {
             game.play(moves)
@@ -159,7 +155,6 @@ class GameTest {
 
         game.addPlayers(player1)
         game.addPlayers(player2)
-
         for (moves in ls) {
             game.play(moves)
         }
@@ -173,12 +168,7 @@ class GameTest {
         val player1 = Player(Person("a"))
         val player2 = Player(Person("b"))
         val ls = listOf(
-            "Defunct coin",
-            "Defunct coin",
-            "Defunct coin",
-            "Defunct coin",
-            "Defunct coin",
-            "Defunct coin"
+            "Defunct coin", "Defunct coin", "Defunct coin", "Defunct coin", "Defunct coin", "Defunct coin"
         )
         val expected1 = 3 * DEFUNCT_COIN_PENALTY + 2 * NORMAL_PENALTY
         val expected2 = 3 * DEFUNCT_COIN_PENALTY + 2 * NORMAL_PENALTY

@@ -90,8 +90,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
                 updateFoulsAndTurnPoint(1, 1)
             }
 
-            else ->
-                throw InValidMoveException()
+            else -> throw InValidMoveException()
         }
     }
 
