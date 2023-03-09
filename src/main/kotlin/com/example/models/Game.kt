@@ -23,11 +23,11 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         if (status == GameStatus.OVER || status == GameStatus.DRAW) return status
         if (players.size < 2) throw InSufficientPlayersException(players.size)
         if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
-        setPlayerTurn(currentTurnPlayerIndex)
         executeMove(move)
         checkAndUpdateForNonPocketedTurns()
         checkAndUpdateFoulCountAndScore()
         checkAndSetWinner()
+        updateCurrentTurnPlayerIndex()
 
         if (winner != null) {
             setStatus(GameStatus.OVER)
@@ -44,32 +44,32 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         when (move) {
             "Strike" -> {
                 updateCoinAndScore(1, 0, 1)
-                updateFoulsAndTurnPoint(0, -1 * lastThreeTurnsCoins)
+                updateFoulsAndSuccessiveTurnPoint(0, -1 * lastThreeTurnsCoins)
             }
 
             "Multi strike" -> {
                 updateCoinAndScore(MULTI_STRIKE_COINS_COUNT, 0, MULTI_STRIKE_SCORE)
-                updateFoulsAndTurnPoint(0, -1 * lastThreeTurnsCoins)
+                updateFoulsAndSuccessiveTurnPoint(0, -1 * lastThreeTurnsCoins)
 
             }
 
             "Red strike" -> {
                 updateCoinAndScore(0, 1, RED_STRIKE_SCORE)
-                updateFoulsAndTurnPoint(0, -1 * lastThreeTurnsCoins)
+                updateFoulsAndSuccessiveTurnPoint(0, -1 * lastThreeTurnsCoins)
             }
 
             "Striker strike" -> {
                 updateCoinAndScore(0, 0, STRIKER_PENALTY_VALUE)
-                updateFoulsAndTurnPoint(1, 1)
+                updateFoulsAndSuccessiveTurnPoint(1, 1)
             }
 
             "Defunct coin" -> {
                 updateCoinAndScore(-1, 0, DEFUNCT_COIN_PENALTY)
-                updateFoulsAndTurnPoint(1, 1)
+                updateFoulsAndSuccessiveTurnPoint(1, 1)
             }
 
             "None" -> {
-                updateFoulsAndTurnPoint(0, 1)
+                updateFoulsAndSuccessiveTurnPoint(0, 1)
             }
 
             else -> throw InValidMoveException()
@@ -84,9 +84,9 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         board.updateRedCoinsCount(-1 * redCoins)
     }
 
-    private fun updateFoulsAndTurnPoint(foulPoints: Int, successiveTurnUpdate: Int) {
+    private fun updateFoulsAndSuccessiveTurnPoint(foulPoints: Int, currentTurnUpdate: Int) {
         players[currentTurnPlayerIndex].updateFoulCount(foulPoints)
-        players[currentTurnPlayerIndex].updateThreeSuccessiveTurnsCoins(successiveTurnUpdate)
+        players[currentTurnPlayerIndex].updateThreeSuccessiveTurnsCoins(currentTurnUpdate)
     }
 
     private fun checkAndUpdateFoulCountAndScore() {
@@ -107,20 +107,20 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         status = newStatus
     }
 
-    private fun setPlayerTurn(index: Int) {
-        players[currentTurnPlayerIndex] = players[index]
-        currentTurnPlayerIndex = (index + 1) % PLAYERS_COUNT
+    private fun updateCurrentTurnPlayerIndex() {
+        currentTurnPlayerIndex = (currentTurnPlayerIndex + 1) % PLAYERS_COUNT
     }
 
     private fun checkAndSetWinner(): Player? {
-        val score1 = players[0].getGameScore()
-        val score2 = players[1].getGameScore()
+
+        val score1 = players[currentTurnPlayerIndex].getGameScore()
+        val score2 = players[(currentTurnPlayerIndex + 1) % PLAYERS_COUNT].getGameScore()
         if ((score1 >= MIN_INDIVIDUAL_SCORE_TO_WIN && score1 >= (score2 + MIN_RELATIVE_SCORE_FACTOR_TO_WIN))) {
             winner = players[currentTurnPlayerIndex]
             return winner
         }
         if ((score2 >= MIN_INDIVIDUAL_SCORE_TO_WIN && score2 >= (score1 + MIN_RELATIVE_SCORE_FACTOR_TO_WIN))) {
-            winner = players[(currentTurnPlayerIndex + 1) % 2]
+            winner = players[(currentTurnPlayerIndex + 1) % PLAYERS_COUNT]
             return winner
         }
         return null

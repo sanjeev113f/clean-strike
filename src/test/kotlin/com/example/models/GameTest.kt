@@ -56,7 +56,33 @@ class GameTest {
 
         assertEquals(GameStatus.OVER, game.getStatus())
         assertNotNull(game.getWinner())
+        assertEquals(player1, game.getWinner())
         assertEquals("a", game.getWinner()!!.getName())
+    }
+
+    @Test
+    fun `should be able to check wining player and game status`() {
+        val board = CaromBoard()
+        val game = Game(board)
+        val player1 = Player("a")
+        val player2 = Player("b")
+        val ls = listOf(
+            "Multi strike",
+            "Red strike",
+            "Multi strike",
+            "None",
+            "Strike",
+            "Striker strike"
+        )
+
+        game.addPlayers(player1)
+        game.addPlayers(player2)
+        for (moves in ls) {
+            game.play(moves)
+        }
+
+        assertEquals(GameStatus.OVER, game.getStatus())
+        assertEquals(player1, game.getWinner())
     }
 
     @Test
