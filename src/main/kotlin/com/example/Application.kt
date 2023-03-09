@@ -15,7 +15,7 @@ fun main() {
     game.addPlayers(player1)
     game.addPlayers(player2)
 
-    val ls = listOf("Multi strike", "strike", "Red strike", "Defunct coin")
+    val ls = listOf("Multi strike", "Strike", "Red strike", "Defunct coin")
     for (element in ls) {
         game.play(element)
     }
