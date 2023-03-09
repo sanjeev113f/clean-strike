@@ -1,5 +1,6 @@
 package com.example.models
 
+import com.example.error.InSufficientPlayersException
 import com.example.error.InValidMoveException
 import com.example.error.PlayerLimitExceededException
 
@@ -45,6 +46,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     fun play(move: String) {
         if (status == GameStatus.OVER || status == GameStatus.DRAW) return
+        if(players.size<2) throw InSufficientPlayersException(players.size)
         if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
         setPlayerTurn(currentTurnPlayerIndex)
         executeMove(move)
