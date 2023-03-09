@@ -11,7 +11,7 @@ import org.junit.jupiter.api.assertThrows
 class GameTest {
 
     @Test
-    fun `should not be able add player more than 2`() {
+    fun `should not be able to add player more than 2`() {
         val game = Game()
         game.addPlayers(Player("sanjeev"))
         game.addPlayers(Player("rao"))
@@ -20,72 +20,36 @@ class GameTest {
     }
 
     @Test
-    fun `should be able to check win`() {
+    fun `should be able to check winner and active status`() {
         val game = Game()
         val player1 = Player("a")
         val player2 = Player("b")
 
-        game.addPlayers(player1)
-        game.addPlayers(player2)
-
-        assertEquals(false, game.checkWin())
-    }
-
-    @Test
-    fun `should be able to check win and update status`() {
-        val game = Game()
-        val player1 = Player("a")
-        val player2 = Player("b")
-
-        game.addPlayers(player1)
-        game.addPlayers(player2)
-        player2.updateGameScore(5)
-
-        assertEquals(game.checkWin(), true)
-        assertEquals(GameStatus.INACTIVE, game.getStatus())
-    }
-
-    @Test
-    fun `should be able to check win with updated score`() {
-        val game = Game()
-        val player1 = Player("a")
-        val player2 = Player("b")
-
-        game.addPlayers(player1)
-        game.addPlayers(player2)
-        player1.updateGameScore(10)
-        player2.updateGameScore(2)
-
-        assertEquals(true, game.checkWin())
-    }
-
-    @Test
-    fun `should be able to start game`() {
-        val board = CaromBoard()
-        val game = Game(board)
-
-        val player1 = Player("sanjeev")
-        val player2 = Player("kumar")
         game.addPlayers(player1)
         game.addPlayers(player2)
         game.play("Strike")
 
+        assertEquals(null, game.getWinner())
         assertEquals(GameStatus.ACTIVE, game.getStatus())
     }
 
     @Test
-    fun `should be able to play the game with win as result`() {
+    fun `should be able to check won player and game status`() {
         val board = CaromBoard()
         val game = Game(board)
         val player1 = Player("a")
         val player2 = Player("b")
+        val ls = listOf(
+            "Multi strike",
+            "Strike",
+            "Multi strike",
+            "None",
+            "Multi strike",
+            "None"
+        )
 
         game.addPlayers(player1)
         game.addPlayers(player2)
-        val ls = listOf(
-
-            "Multi strike", "Strike", "Multi strike", "None", "Multi strike", "None"
-        )
         for (moves in ls) {
             game.play(moves)
         }
@@ -108,7 +72,7 @@ class GameTest {
     }
 
     @Test
-    fun `should be able to play the game with Draw as result`() {
+    fun `should be able to check winner and Draw status`() {
         val board = CaromBoard()
         val game = Game(board)
         val player1 = Player("a")
@@ -138,15 +102,21 @@ class GameTest {
         }
 
         assertEquals(GameStatus.DRAW, game.getStatus())
+        assertEquals(null, game.getWinner())
     }
 
     @Test
-    fun `should be able to update score after three turns with 0 coins pocketed`() {
+    fun `should be able to check score after three turns with 0 coins pocketed and status and game winner`() {
         val game = Game()
         val player1 = Player("a")
         val player2 = Player("b")
         val ls = listOf(
-            "Defunct coin", "Defunct coin", "Defunct coin", "Defunct coin", "Defunct coin", "Defunct coin"
+            "Defunct coin",
+            "Defunct coin",
+            "Defunct coin",
+            "Defunct coin",
+            "Defunct coin",
+            "Defunct coin"
         )
         val expected1 = 3 * DEFUNCT_COIN_PENALTY + 2 * NORMAL_PENALTY
         val expected2 = 3 * DEFUNCT_COIN_PENALTY + 2 * NORMAL_PENALTY
@@ -160,5 +130,7 @@ class GameTest {
 
         assertEquals(expected1, player1.getGameScore())
         assertEquals(expected2, player2.getGameScore())
+        assertEquals(null, game.getWinner())
+        assertEquals(GameStatus.ACTIVE, game.getStatus())
     }
 }
