@@ -107,17 +107,16 @@ class GameTest {
         val ls = listOf(
             "Multi strike",
             "Strike",
-            "Defunct coin",
-            "Red strike",
             "Multi strike",
             "Defunct coin",
-            "Red strike"
+            "Multi strike",
+            "Defunct coin"
         )
         for (moves in ls) {
             game.play(moves)
         }
 
-        assertEquals(game.getStatus(), GameStatus.OVER)
+        assertEquals(GameStatus.OVER, game.getStatus())
         assertNotNull(game.getWinner())
         assertEquals("a", game.getWinner()!!.person.name)
     }
@@ -140,9 +139,6 @@ class GameTest {
         val game = Game(board)
         val player1 = Player(Person("a"))
         val player2 = Player(Person("b"))
-
-        game.addPlayers(player1)
-        game.addPlayers(player2)
         val ls = listOf(
             "Striker strike",
             "Red strike",
@@ -160,6 +156,10 @@ class GameTest {
             "Strike",
             "Strike"
         )
+
+        game.addPlayers(player1)
+        game.addPlayers(player2)
+
         for (moves in ls) {
             game.play(moves)
         }

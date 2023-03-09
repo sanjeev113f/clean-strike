@@ -100,7 +100,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         players[currentTurnPlayerIndex].addBlackCoin(blackCoins)
         players[currentTurnPlayerIndex].addRedCoin(redCoins)
         board.updateBlackCoinsCount(-1 * blackCoins)
-        board.updateRedCoinsCount(-1 * blackCoins)
+        board.updateRedCoinsCount(-1 * redCoins)
     }
 
     private fun updateFoulsAndTurnPoint(foulPoints: Int, successiveTurnUpdate: Int) {
