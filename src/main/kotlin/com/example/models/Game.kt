@@ -45,9 +45,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     fun play(move: String) {
         if (status == GameStatus.OVER || status == GameStatus.DRAW) return
-
         if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
-        lastThreeTurnsCoins = players[currentTurnPlayerIndex].getThreeSuccessiveTurnsCoins()
         setPlayerTurn(currentTurnPlayerIndex)
         executeMove(move)
         checkAndUpdateForNullTurns()
@@ -62,8 +60,9 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         }
     }
 
-    private var lastThreeTurnsCoins = MIN_COUNT
+
     private fun executeMove(move: String) {
+        val lastThreeTurnsCoins = players[currentTurnPlayerIndex].getThreeSuccessiveTurnsCoins()
         when (move) {
             "Strike" -> {
                 updateCoinAndScore(1, 0, 1)
