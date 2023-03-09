@@ -16,10 +16,6 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     fun getWinner() = winner
 
-    fun setStatus(newStatus: GameStatus) {
-        status = newStatus
-    }
-
     private fun setPlayerTurn(index: Int) {
         players[currentTurnPlayerIndex] = players[index]
         currentTurnPlayerIndex = (index + 1) % PLAYERS_COUNT
@@ -46,7 +42,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     fun play(move: String) {
         if (status == GameStatus.OVER || status == GameStatus.DRAW) return
-        if(players.size<2) throw InSufficientPlayersException(players.size)
+        if (players.size < 2) throw InSufficientPlayersException(players.size)
         if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
         setPlayerTurn(currentTurnPlayerIndex)
         executeMove(move)
@@ -123,5 +119,9 @@ class Game(private val board: CaromBoard = CaromBoard()) {
             players[currentTurnPlayerIndex].updateGameScore(NORMAL_PENALTY)
             players[currentTurnPlayerIndex].updateThreeSuccessiveTurnsCoins(-1 * MAX_NON_POCKETED_TURNS_COUNT)
         }
+    }
+
+    private fun setStatus(newStatus: GameStatus) {
+        status = newStatus
     }
 }

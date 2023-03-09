@@ -11,15 +11,6 @@ import org.junit.jupiter.api.assertThrows
 class GameTest {
 
     @Test
-    fun `should be able set status for game`() {
-        val game = Game()
-
-        game.setStatus(GameStatus.ACTIVE)
-
-        assertEquals(GameStatus.ACTIVE, game.getStatus())
-    }
-
-    @Test
     fun `should not be able add player more than 2`() {
         val game = Game()
         game.addPlayers(Player(Person("sanjeev")))
