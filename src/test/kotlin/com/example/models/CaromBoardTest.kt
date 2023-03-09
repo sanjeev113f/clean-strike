@@ -61,7 +61,14 @@ class CaromBoardTest {
     fun `should throw exception for negative coin black count`() {
         val board = CaromBoard()
 
-        assertThrows<InValidMoveException>{board.updateBlackCoinsCount(-10)}
+        assertThrows<InValidMoveException> { board.updateBlackCoinsCount(-10) }
+    }
+
+    @Test
+    fun `should throw exception for negative coin Red count`() {
+        val board = CaromBoard()
+
+        assertThrows<InValidMoveException> { board.updateRedCoinsCount(-2) }
     }
 
 }
