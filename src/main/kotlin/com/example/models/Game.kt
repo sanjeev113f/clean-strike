@@ -38,8 +38,8 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         return false
     }
 
-    fun play(move: String) {
-        if (status == GameStatus.OVER || status == GameStatus.DRAW) return
+    fun play(move: String): GameStatus {
+        if (status == GameStatus.OVER || status == GameStatus.DRAW) return status
         if (players.size < 2) throw InSufficientPlayersException(players.size)
         if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
         setPlayerTurn(currentTurnPlayerIndex)
@@ -52,6 +52,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         } else if (board.isCoinsOver()) {
             setStatus(GameStatus.DRAW)
         }
+        return status
     }
 
 
