@@ -64,12 +64,6 @@
 
 # Attempt to set APP_HOME
 
-steps {
-    echo 'Compile project'
-    sh "chmod +x gradlew"
-    sh "./gradlew clean build --no-daemon"
-}
-
 # Resolve links: $0 may be a link
 app_path=$0
 
