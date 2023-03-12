@@ -13,19 +13,19 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: checkout code
-        use: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup JDK 17
-        use: actions/checkout@v3
+        uses: actions/checkout@v3
         with:
           java-version: '17'
           distribution: 'corretto'
 
       - name: run test using gradle
-        use:  gradle/gradle-build-action@v2
-        arguments:
-          test
+        uses:  gradle/gradle-build-action@v2
+        with:
+          arguments: test
 
 
 
