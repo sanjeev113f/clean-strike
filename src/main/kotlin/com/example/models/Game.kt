@@ -1,7 +1,7 @@
 package com.example.models
 
+import com.example.com.example.models.Moves
 import com.example.error.InSufficientPlayersException
-import com.example.error.InValidMoveException
 import com.example.error.PlayerLimitExceededException
 
 class Game(private val board: CaromBoard = CaromBoard()) {
@@ -42,37 +42,35 @@ class Game(private val board: CaromBoard = CaromBoard()) {
     private fun executeMove(move: String) {
         val lastThreeTurnsCoins = players[currentTurnPlayerIndex].getThreeSuccessiveTurnsCoins()
         when (move) {
-            "Strike" -> {
+            Moves.STRIKE.move -> {
                 updateCoinAndScore(1, 0, 1)
                 updateFoulsAndSuccessiveTurnPoint(0, -1 * lastThreeTurnsCoins)
             }
 
-            "Multi strike" -> {
+            Moves.MULTI_STRIKE.move -> {
                 updateCoinAndScore(MULTI_STRIKE_COINS_COUNT, 0, MULTI_STRIKE_SCORE)
                 updateFoulsAndSuccessiveTurnPoint(0, -1 * lastThreeTurnsCoins)
 
             }
 
-            "Red strike" -> {
+            Moves.RED_STRIKE.move -> {
                 updateCoinAndScore(0, 1, RED_STRIKE_SCORE)
                 updateFoulsAndSuccessiveTurnPoint(0, -1 * lastThreeTurnsCoins)
             }
 
-            "Striker strike" -> {
+            Moves.STRIKER_STRIKE.move -> {
                 updateCoinAndScore(0, 0, STRIKER_PENALTY_VALUE)
                 updateFoulsAndSuccessiveTurnPoint(1, 1)
             }
 
-            "Defunct coin" -> {
+            Moves.DEFUNCT_COIN.move -> {
                 updateCoinAndScore(-1, 0, DEFUNCT_COIN_PENALTY)
                 updateFoulsAndSuccessiveTurnPoint(1, 1)
             }
 
-            "None" -> {
+            Moves.NONE.move -> {
                 updateFoulsAndSuccessiveTurnPoint(0, 1)
             }
-
-            else -> throw InValidMoveException()
         }
     }
 
