@@ -2,12 +2,10 @@ package com.example.models
 
 import com.example.error.InValidMoveException
 import com.example.error.PlayerLimitExceededException
-import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-@MicronautTest
 class GameTest {
 
     @Test
