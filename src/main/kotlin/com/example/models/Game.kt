@@ -21,7 +21,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     fun play(move: String): GameStatus {
         if (status == GameStatus.OVER || status == GameStatus.DRAW) return status
-        if (players.size < 2) throw InSufficientPlayersException(players.size)
+        if (players.size < PLAYERS_COUNT) throw InSufficientPlayersException(players.size)
         if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
         executeMove(move)
         checkAndUpdateForNonPocketedTurns()
