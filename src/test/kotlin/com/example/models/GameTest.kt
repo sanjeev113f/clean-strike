@@ -1,5 +1,6 @@
 package com.example.models
 
+import com.example.error.InSufficientPlayersException
 import com.example.error.InValidMoveException
 import com.example.error.PlayerLimitExceededException
 import org.junit.jupiter.api.Assertions.*
@@ -15,6 +16,16 @@ class GameTest {
         game.addPlayers(Player("rao"))
 
         assertThrows<PlayerLimitExceededException> { game.addPlayers(Player("sanjiv")) }
+    }
+
+    @Test
+    fun `should raise exception with single player`() {
+        val game = Game()
+        val player1 = Player("a")
+
+        game.addPlayers(player1)
+
+        assertThrows<InSufficientPlayersException> { game.play("abc") }
     }
 
     @Test
