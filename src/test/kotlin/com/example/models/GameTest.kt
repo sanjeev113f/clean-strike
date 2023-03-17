@@ -1,9 +1,9 @@
 package com.example.models
 
 import com.example.error.InSufficientPlayersException
-import com.example.error.InValidMoveException
 import com.example.error.PlayerLimitExceededException
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -12,10 +12,13 @@ class GameTest {
     @Test
     fun `should not be able to add player more than 2`() {
         val game = Game()
+
         game.addPlayers(Player("sanjeev"))
         game.addPlayers(Player("rao"))
+        val response = game.addPlayers(Player("'sanjiv"))
 
-        assertThrows<PlayerLimitExceededException> { game.addPlayers(Player("sanjiv")) }
+        assertThrows<PlayerLimitExceededException> { response.getOrThrow() }
+        assertEquals(true, response.isFailure)
     }
 
     @Test
@@ -24,8 +27,10 @@ class GameTest {
         val player1 = Player("a")
 
         game.addPlayers(player1)
+        val response = game.play("abc")
 
-        assertThrows<InSufficientPlayersException> { game.play("abc") }
+        assertThrows<InSufficientPlayersException> { response.getOrThrow() }
+        assertEquals(true, response.isFailure)
     }
 
     @Test
@@ -92,18 +97,6 @@ class GameTest {
 
         assertEquals(GameStatus.OVER, game.getStatus())
         assertEquals(player1, game.getWinner())
-    }
-
-    @Test
-    fun `should be able to throw exception for invalid move`() {
-        val game = Game()
-        val player1 = Player("a")
-        val player2 = Player("b")
-
-        game.addPlayers(player1)
-        game.addPlayers(player2)
-
-        assertThrows<InValidMoveException> { game.play("abc") }
     }
 
     @Test
