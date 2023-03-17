@@ -27,8 +27,10 @@ class GameTest {
         val player1 = Player("a")
 
         game.addPlayers(player1)
+        val response = game.play("abc")
 
-        assertThrows<InSufficientPlayersException> { game.play("abc") }
+        assertThrows<InSufficientPlayersException> { response.getOrThrow() }
+        assertEquals(true, response.isFailure)
     }
 
     @Test

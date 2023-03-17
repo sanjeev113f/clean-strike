@@ -23,9 +23,9 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         }
     }
 
-    fun play(move: String): GameStatus {
-        if (status == GameStatus.OVER || status == GameStatus.DRAW) return status
-        if (players.size < PLAYERS_COUNT) throw InSufficientPlayersException(players.size)
+    fun play(move: String): Result<GameStatus> {
+        if (status == GameStatus.OVER || status == GameStatus.DRAW) return Result.success(status)
+        if (players.size < PLAYERS_COUNT) return Result.failure(InSufficientPlayersException(players.size))
         if (status == GameStatus.INACTIVE) setStatus(GameStatus.ACTIVE)
         executeMove(move)
         checkAndUpdateForNonPocketedTurns()
@@ -39,7 +39,7 @@ class Game(private val board: CaromBoard = CaromBoard()) {
         } else if (board.isCoinsOver()) {
             setStatus(GameStatus.DRAW)
         }
-        return status
+        return Result.success(status)
     }
 
 
