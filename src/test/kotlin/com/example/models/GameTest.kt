@@ -1,9 +1,9 @@
 package com.example.models
 
 import com.example.error.InSufficientPlayersException
-import com.example.error.InValidMoveException
 import com.example.error.PlayerLimitExceededException
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -12,10 +12,13 @@ class GameTest {
     @Test
     fun `should not be able to add player more than 2`() {
         val game = Game()
+
         game.addPlayers(Player("sanjeev"))
         game.addPlayers(Player("rao"))
+        val response = game.addPlayers(Player("'sanjiv"))
 
-        assertThrows<PlayerLimitExceededException> { game.addPlayers(Player("sanjiv")) }
+        assertThrows<PlayerLimitExceededException> { response.getOrThrow() }
+        assertEquals(true, response.isFailure)
     }
 
     @Test

@@ -14,9 +14,13 @@ class Game(private val board: CaromBoard = CaromBoard()) {
 
     fun getWinner() = winner
 
-    fun addPlayers(player: Player) {
-        if (players.size == PLAYERS_COUNT) throw PlayerLimitExceededException()
-        players.add(player)
+    fun addPlayers(player: Player): Result<Int.Companion> {
+        return if (players.size == PLAYERS_COUNT) {
+            Result.failure(PlayerLimitExceededException())
+        } else {
+            players.add(player)
+            Result.success(Int)
+        }
     }
 
     fun play(move: String): GameStatus {
